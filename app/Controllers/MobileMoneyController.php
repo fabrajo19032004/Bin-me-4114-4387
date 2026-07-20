@@ -19,7 +19,9 @@ class MobileMoneyController extends BaseController
             return redirect()->to(base_url('auth/login'));
         }
 
-        if ($session->get('role') === 'OPERATEUR') {
+        $role = strtoupper((string) $session->get('role'));
+
+        if ($role === 'OPERATEUR') {
             return redirect()->to(base_url('mobile-money/operator'));
         }
 
@@ -67,8 +69,19 @@ class MobileMoneyController extends BaseController
 
         $clientModel = new ClientModel();
         $transactionModel = new TransactionModel();
+        $typeOperationModel = new TypeOperationModel();
         $client = $clientModel->find(session()->get('client_id'));
         $transactions = $transactionModel->getByClient((int) $client['id']);
+        $operations = $typeOperationModel->findAll();
+        $operationNames = [];
+
+        foreach ($operations as $operation) {
+            $operationNames[(int) $operation['id']] = $operation['nom'];
+        }
+
+        foreach ($transactions as &$transaction) {
+            $transaction['type_nom'] = $operationNames[(int) ($transaction['type_operation_id'] ?? 0)] ?? 'Inconnu';
+        }
 
         return view('mobile_money/client_dashboard', [
             'client' => $client,
@@ -78,19 +91,123 @@ class MobileMoneyController extends BaseController
 
     public function operatorDashboard()
     {
-        if (!session()->get('connecte')) {
-            return redirect()->to(base_url('mobile-money/login'));
+        $redirect = $this->ensureOperator();
+        if ($redirect !== null) {
+            return $redirect;
         }
 
         $clientModel = new ClientModel();
         $transactionModel = new TransactionModel();
+        $prefixModel = new PrefixModel();
+        $typeOperationModel = new TypeOperationModel();
+        $feeModel = new BaremeFraisModel();
+
         $clients = $clientModel->findAll();
         $transactions = $transactionModel->findAll();
+        $prefixes = $prefixModel->orderBy('prefixe', 'ASC')->findAll();
+        $operations = $typeOperationModel->orderBy('nom', 'ASC')->findAll();
+        $fees = $feeModel->orderBy('type_operation_id', 'ASC')->orderBy('montant_min', 'ASC')->findAll();
 
         return view('mobile_money/operator_dashboard', [
             'clients' => $clients,
             'transactions' => $transactions,
+            'prefixes' => $prefixes,
+            'operations' => $operations,
+            'fees' => $fees,
         ]);
+    }
+
+    public function savePrefix()
+    {
+        $redirect = $this->ensureOperator();
+        if ($redirect !== null) {
+            return $redirect;
+        }
+
+        $prefixe = trim($this->request->getPost('prefixe'));
+        if ($prefixe === '') {
+            return redirect()->back()->with('error', 'Le préfixe est requis.');
+        }
+
+        $prefixModel = new PrefixModel();
+        $prefixModel->insert(['prefixe' => $prefixe, 'operateur_id' => 1]);
+
+        return redirect()->back()->with('success', 'Préfixe ajouté avec succès.');
+    }
+
+    public function deletePrefix($id)
+    {
+        $redirect = $this->ensureOperator();
+        if ($redirect !== null) {
+            return $redirect;
+        }
+
+        $prefixModel = new PrefixModel();
+        $prefixModel->delete((int) $id);
+
+        return redirect()->back()->with('success', 'Préfixe supprimé.');
+    }
+
+    public function saveOperation()
+    {
+        $redirect = $this->ensureOperator();
+        if ($redirect !== null) {
+            return $redirect;
+        }
+
+        $nom = trim($this->request->getPost('nom'));
+        if ($nom === '') {
+            return redirect()->back()->with('error', 'Le nom de l’opération est requis.');
+        }
+
+        $typeOperationModel = new TypeOperationModel();
+        $typeOperationModel->insert(['nom' => $nom]);
+
+        return redirect()->back()->with('success', 'Type d’opération ajouté.');
+    }
+
+    public function deleteOperation($id)
+    {
+        $redirect = $this->ensureOperator();
+        if ($redirect !== null) {
+            return $redirect;
+        }
+
+        $typeOperationModel = new TypeOperationModel();
+        $typeOperationModel->delete((int) $id);
+
+        return redirect()->back()->with('success', 'Type d’opération supprimé.');
+    }
+
+    public function saveFee()
+    {
+        $redirect = $this->ensureOperator();
+        if ($redirect !== null) {
+            return $redirect;
+        }
+
+        $feeModel = new BaremeFraisModel();
+        $feeModel->insert([
+            'type_operation_id' => (int) $this->request->getPost('type_operation_id'),
+            'montant_min' => (float) $this->request->getPost('montant_min'),
+            'montant_max' => (float) $this->request->getPost('montant_max'),
+            'frais' => (float) $this->request->getPost('frais'),
+        ]);
+
+        return redirect()->back()->with('success', 'Barème ajouté.');
+    }
+
+    public function deleteFee($id)
+    {
+        $redirect = $this->ensureOperator();
+        if ($redirect !== null) {
+            return $redirect;
+        }
+
+        $feeModel = new BaremeFraisModel();
+        $feeModel->delete((int) $id);
+
+        return redirect()->back()->with('success', 'Barème supprimé.');
     }
 
     public function deposit()
@@ -191,6 +308,19 @@ class MobileMoneyController extends BaseController
         $transactionModel->record($typeOperationId, $sender['id'], $recipient['id'], $montant, $frais);
 
         return redirect()->back()->with('success', 'Transfert enregistré avec succès.');
+    }
+
+    private function ensureOperator()
+    {
+        if (!session()->get('connecte')) {
+            return redirect()->to(base_url('mobile-money/login'));
+        }
+
+        if (strtoupper((string) session()->get('role')) !== 'OPERATEUR') {
+            return redirect()->to(base_url('mobile-money/client'));
+        }
+
+        return null;
     }
 
     private function storeSession(array $user): void

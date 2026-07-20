@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\ClientModel;
+use App\Models\PrefixModel;
 use App\Models\UserModel;
 
 class AuthController extends BaseController
@@ -25,6 +27,19 @@ class AuthController extends BaseController
         $userModel = new UserModel();
         $user = $userModel->authenticate($username, $password);
 
+        if (!$user && $this->looksLikePhone($username)) {
+            $prefixModel = new PrefixModel();
+            if (!$prefixModel->isAllowed($username)) {
+                return redirect()->to(base_url('auth/login'))
+                    ->withInput()
+                    ->with('error', 'Ce préfixe n’est pas autorisé.');
+            }
+
+            $clientModel = new ClientModel();
+            $clientModel->firstOrCreate($username);
+            $user = $userModel->createClientUser($username, $password);
+        }
+
         if (!$user) {
             return redirect()->to(base_url('auth/login'))
                 ->withInput()
@@ -39,7 +54,10 @@ class AuthController extends BaseController
             'client_id' => $user['client_id'],
         ]);
 
-        return redirect()->to(base_url('mobile-money'));
+        $role = strtoupper($user['role'] ?? 'CLIENT');
+        $target = $role === 'OPERATEUR' ? 'mobile-money/operator' : 'mobile-money/client';
+
+        return redirect()->to(base_url($target));
     }
 
     public function logout()
@@ -69,5 +87,10 @@ class AuthController extends BaseController
     public function changerMotDePasseNouveauPost()
     {
         return redirect()->to(base_url('auth/login'));
+    }
+
+    private function looksLikePhone(string $value): bool
+    {
+        return preg_match('/^0[0-9]{8,9}$/', $value) === 1;
     }
 }

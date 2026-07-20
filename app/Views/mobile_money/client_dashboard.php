@@ -52,12 +52,13 @@
 </div>
 <div class="card">
     <h3>Historique</h3>
+    <p>Cette vue est réservée au client : vous consultez votre solde et vos opérations.</p>
     <table>
         <tr><th>Date</th><th>Type</th><th>Montant</th><th>Frais</th></tr>
         <?php foreach ($transactions as $t): ?>
             <tr>
                 <td><?= esc($t['date_transaction'] ?? '') ?></td>
-                <td><?= esc($t['type_operation_id'] ?? '') ?></td>
+                <td><?= esc($t['type_nom'] ?? '') ?></td>
                 <td><?= number_format((float) ($t['montant'] ?? 0), 2, ',', ' ') ?></td>
                 <td><?= number_format((float) ($t['frais'] ?? 0), 2, ',', ' ') ?></td>
             </tr>

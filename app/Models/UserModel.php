@@ -29,6 +29,11 @@ class UserModel extends Model
 
     public function createClientUser(string $telephone, string $password): array
     {
+        $existing = $this->where('username', $telephone)->first();
+        if ($existing) {
+            return $existing;
+        }
+
         $clientModel = new ClientModel();
         $client = $clientModel->firstOrCreate($telephone);
 
