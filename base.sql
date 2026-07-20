@@ -1,5 +1,17 @@
 sqlite3 mobile_money.db
 
+--Utilisateurs 
+    CREATE TABLE users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT NOT NULL UNIQUE,
+    password TEXT,
+    role TEXT NOT NULL, 
+    client_id INTEGER,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (client_id) REFERENCES clients(id)
+);
+
 --Opérateur
     CREATE TABLE operateurs (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -96,14 +108,18 @@ sqlite3 mobile_money.db
 
 --Données
 
+    --users
+    INSERT INTO users(username, password, role)
+    VALUES ('admin', 'admin123', 'OPERATEUR');
+    --operateurs
     INSERT INTO operateurs(nom)
     VALUES ('Mobile Money');
-
+    --prefixes
     INSERT INTO prefixes(prefixe, operateur_id)
     VALUES
     ('033',1),
     ('037',1);
-
+    --types_operations
     INSERT INTO types_operations(nom)
     VALUES
     ('Depot'),
