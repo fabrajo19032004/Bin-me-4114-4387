@@ -71,57 +71,57 @@ TODO Liste - Version 1 (4114-4387)
 
 4. Côté Client (4114) 
 
-    - Connexion
-        - Connexion avec le numéro de téléphone
-        - Vérifier que le préfixe est autorisé
-        - Créer automatiquement le client s'il n'existe pas
+    - Connexion (ok)
+        - Connexion avec le numéro de téléphone (ok)
+        - Vérifier que le préfixe est autorisé (ok)
+        - Créer automatiquement le client s'il n'existe pas (ok)
 
-    - Gestion du compte
-        - Consulter le solde
+    - Gestion du compte (ok)
+        - Consulter le solde (ok)
 
-    - Dépôt
-        - Effectuer un dépôt
-        - Mettre à jour le solde
-        - Enregistrer la transaction
+    - Dépôt (ok)
+        - Effectuer un dépôt (ok)
+        - Mettre à jour le solde (ok)
+        - Enregistrer la transaction (ok)
 
-    - Retrait
-        - Vérifier le solde disponible
-        - Calculer les frais
-        - Déduire le montant et les frais
-        - Enregistrer la transaction
+    - Retrait (ok)
+        - Vérifier le solde disponible (ok)
+        - Calculer les frais (ok)
+        - Déduire le montant et les frais (ok)
+        - Enregistrer la transaction (ok)
 
     - Transfert
-        - Vérifier le destinataire
-        - Vérifier le solde
-        - Calculer les frais
-        - Débiter l'expéditeur
-        - Créditer le destinataire
-        - Enregistrer la transaction
+        - Vérifier le destinataire (ok)
+        - Vérifier le solde (ok)
+        - Calculer les frais (ok)
+        - Débiter l'expéditeur (ok)
+        - Créditer le destinataire (ok)
+        - Enregistrer la transaction (ok)
 
     - Historique
-        - Afficher toutes les transactions du client
+        - Afficher toutes les transactions du client (ok)
 
 
 
 5. Développement (4387-4114)
 
-    - Créer les Models
-    - Créer les Controllers
-    - Créer les Views
-    - Mettre en place les routes
-    - Ajouter les validations des formulaires
-    - Gérer les messages de succès et d'erreur
+    - Créer les Models (ok)
+    - Créer les Controllers (ok)
+    - Créer les Views (ok)
+    - Mettre en place les routes (ok)
+    - Ajouter les validations des formulaires (ok)
+    - Gérer les messages de succès et d'erreur (ok)
 
 
 
 6. Interface 
 
-    - Créer la page de connexion
-    - Créer le Dashboard Opérateur
-    - Créer le Dashboard Client
-    - Créer les pages CRUD
+    - Créer la page de connexion (ok)
+    - Créer le Dashboard Opérateur (ok)
+    - Créer le Dashboard Client (ok)
+    - Créer les pages CRUD (ok)
     - Adapter l'interface avec Bootstrap (non fini)
-    - Vérifier le responsive    
+    - Vérifier le responsive   (ok)  
 
 
 -- Version 2:
@@ -135,24 +135,41 @@ TODO Liste - Version 1 (4114-4387)
 
 2. Côté Opérateur (4387)
 
-    - Gestion des préfixes 
-        - Ajouter les préfixes des autres opérateurs (031, 032...)
-        - Modifier les préfixes
-        - Supprimer les préfixes
-        - Identifier l'opérateur associé à chaque préfixe
+    - Gestion des préfixes  (ok)
+        - Ajouter les préfixes des autres opérateurs (031, 032...) (ok)
+        - Modifier les préfixes (ok)
+        - Supprimer les préfixes (ok)
+        - Identifier l'opérateur associé à chaque préfixe (ok)
 
-    - Configuration des commissions
-        - Ajouter un pourcentage de commission
-        - Modifier le pourcentage
-        - Appliquer la commission uniquement pour les transferts vers les autres opérateurs
+    - Configuration des commissions (ok)
+        - Ajouter un pourcentage de commission (ok)
+        - Modifier le pourcentage (ok)
+        - Appliquer la commission uniquement pour les transferts vers les autres opérateurs (ok)
 
-    - Situation des gains
-        - Séparer les gains des transferts internes
-        - Séparer les gains des transferts vers les autres opérateurs
-        - Afficher les frais de retrait
-        - Afficher les frais de transfert
+    - Situation des gains (ok)
+        - Séparer les gains des transferts internes (ok)
+        - Séparer les gains des transferts vers les autres opérateurs (ok)
+        - Afficher les frais de retrait (ok)
+        - Afficher les frais de transfert (ok)
 
-    - Situation des montants à envoyer
-        - Calculer les montants destinés à chaque opérateur
-        - Afficher le total par opérateur
-        - Générer un récapitulatif des montants
+    - Situation des montants à envoyer (ok)
+        - Calculer les montants destinés à chaque opérateur (ok)
+        - Afficher le total par opérateur (ok)
+        - Générer un récapitulatif des montants (ok)
+
+
+3. Côté Client (4114)
+
+    - Transfert avec frais de retrait (ok)
+        - Ajouter l'option "Inclure les frais de retrait" (ok)
+        - Calculer automatiquement le montant total à débiter (ok)
+        - Mettre à jour le solde (ok)
+        - Enregistrer la transaction (ok)
+
+    - Envoi multiple (ok)
+        - Permettre la saisie de plusieurs numéros (ok)
+        - Vérifier les numéros destinataires (ok)
+        - Diviser automatiquement le montant entre les bénéficiaires (ok)
+        - Calculer les frais correspondants (ok)
+        - Effectuer tous les transferts (ok)
+        - Enregistrer toutes les transactions (ok)
