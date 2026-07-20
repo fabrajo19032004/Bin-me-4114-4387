@@ -55,15 +55,70 @@ TODO Liste - Version 1 (4114-4387)
         - Afficher les gains sur les transferts
         - Afficher la situation des comptes clients
 
-3. Base de données (En cours 4114)
+3. Base de données ( 4114)
 
-    - Créer la table clients
-    - Créer la table operateurs
-    - Créer la table prefixes
-    - Créer la table types_operations
-    - Créer la table baremes_frais
-    - Créer la table transactions
+    - Créer la table clients (ok)
+    - Créer la table operateurs (ok)
+    - Créer la table prefixes (ok)
+    - Créer la table types_operations (ok)
+    - Créer la table baremes_frais (ok)
+    - Créer la table transactions (ok)
 
-    - Définir les clés primaires
-    - Définir les clés étrangères
-    - Vérifier les relations entre les tables
+    - Définir les clés primaires (ok)
+    - Définir les clés étrangères (ok)
+    - Vérifier les relations entre les tables (ok)
+
+
+4. Côté Client (4114)
+
+    - Connexion
+        - Connexion avec le numéro de téléphone
+        - Vérifier que le préfixe est autorisé
+        - Créer automatiquement le client s'il n'existe pas
+
+    - Gestion du compte
+        - Consulter le solde
+
+    - Dépôt
+        - Effectuer un dépôt
+        - Mettre à jour le solde
+        - Enregistrer la transaction
+
+    - Retrait
+        - Vérifier le solde disponible
+        - Calculer les frais
+        - Déduire le montant et les frais
+        - Enregistrer la transaction
+
+    - Transfert
+        - Vérifier le destinataire
+        - Vérifier le solde
+        - Calculer les frais
+        - Débiter l'expéditeur
+        - Créditer le destinataire
+        - Enregistrer la transaction
+
+    - Historique
+        - Afficher toutes les transactions du client
+
+
+
+5. Développement (4387-4114)
+
+    - Créer les Models
+    - Créer les Controllers
+    - Créer les Views
+    - Mettre en place les routes
+    - Ajouter les validations des formulaires
+    - Gérer les messages de succès et d'erreur
+
+
+
+6. Interface 
+
+    - Créer la page de connexion
+    - Créer le Dashboard Opérateur
+    - Créer le Dashboard Client
+    - Créer les pages CRUD
+    - Adapter l'interface avec Bootstrap (non fini)
+    - Vérifier le responsive    
