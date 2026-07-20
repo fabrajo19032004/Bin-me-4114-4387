@@ -10,7 +10,7 @@ class PrefixModel extends Model
     protected $primaryKey = 'id';
     protected $useAutoIncrement = true;
     protected $returnType = 'array';
-    protected $allowedFields = ['prefixe', 'operateur_id'];
+    protected $allowedFields = ['prefixe', 'operateur_id' , 'est_local'];
 
     public function isAllowed(string $telephone): bool
     {
