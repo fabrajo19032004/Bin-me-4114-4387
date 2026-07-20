@@ -38,10 +38,10 @@ class AuthFilter implements FilterInterface
             if (!in_array($roleUtilisateur, $rolesAutorises)) {
                 // Connecté mais mauvais rôle → retour à son propre dashboard
                 $dashMap = [
-                    'agent_commercial' => 'agent/dashboard',
-                    'magasinier'       => 'magasinier/dashboard',
-                    'livreur'          => 'livreur/dashboard',
-                    'admin'            => 'admin/dashboard',
+                    'agent_commercial' => 'operator/prefixes',
+                    'magasinier'       => 'operator/prefixes',
+                    'livreur'          => 'operator/prefixes',
+                    'admin'            => 'operator/prefixes',
                 ];
                 $redirect = $dashMap[$roleUtilisateur] ?? 'auth/login';
                 return redirect()->to(base_url($redirect))

@@ -20,16 +20,18 @@ class UserModel extends Model
         'mdp_temp_expire_at',
         'demande_reinit',
         'role',
+        'username',
+        'password',
     ];
 
-    // Timestamps (présents dans table.sql)
-    protected $useTimestamps = true;
+    // La base SQLite actuelle ne contient pas ces colonnes.
+    // On désactive ces comportements pour éviter les requêtes SQL invalides.
+    protected $useTimestamps = false;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
 
-    // Soft Deletes (colonne deleted_at présente dans table.sql)
-    protected $useSoftDeletes = true;
+    protected $useSoftDeletes = false;
     protected $deletedField   = 'deleted_at';
 
     // Callbacks
@@ -38,9 +40,8 @@ class UserModel extends Model
     protected $beforeUpdate   = ['hashPassword'];
 
     /**
-     * Hash automatique du mot de passe (champ 'mot_de_passe') avant INSERT ou UPDATE.
-     * Le mot de passe temporaire ('mot_de_passe_temp') est haché séparément
-     * via genererMotDePasseTemporaire(), il n'est donc PAS touché ici.
+     * Hash automatique du mot de passe avant INSERT ou UPDATE.
+     * Supporte à la fois les colonnes modernes et les anciennes colonnes SQLite.
      */
     protected function hashPassword(array $data): array
     {
@@ -51,13 +52,119 @@ class UserModel extends Model
             );
         }
 
+        if (isset($data['data']['password'])) {
+            $data['data']['password'] = password_hash(
+                $data['data']['password'],
+                PASSWORD_DEFAULT
+            );
+        }
+
         return $data;
+    }
+
+    protected function getExistingColumns(): array
+    {
+        $columns = $this->db->getFieldNames($this->table);
+
+        return is_array($columns) ? array_map('strval', $columns) : [];
+    }
+
+    protected function normalizeDataForStorage(array $data): array
+    {
+        $existingColumns = $this->getExistingColumns();
+        $normalized       = [];
+
+        foreach ($data as $key => $value) {
+            if (in_array($key, $existingColumns, true)) {
+                $normalized[$key] = $value;
+                continue;
+            }
+
+            if ($key === 'email' && in_array('username', $existingColumns, true)) {
+                $normalized['username'] = $value;
+                continue;
+            }
+
+            if ($key === 'username' && in_array('email', $existingColumns, true)) {
+                $normalized['email'] = $value;
+                continue;
+            }
+
+            if ($key === 'mot_de_passe' && in_array('password', $existingColumns, true)) {
+                $normalized['password'] = $value;
+                continue;
+            }
+
+            if ($key === 'password' && in_array('mot_de_passe', $existingColumns, true)) {
+                $normalized['mot_de_passe'] = $value;
+                continue;
+            }
+
+            if ($key === 'nom' && in_array('username', $existingColumns, true) && !isset($normalized['username'])) {
+                $normalized['username'] = $value;
+            }
+        }
+
+        return $normalized;
+    }
+
+    public function insert($data = null, bool $returnID = true)
+    {
+        if (is_array($data)) {
+            $data = $this->normalizeDataForStorage($data);
+        }
+
+        return parent::insert($data, $returnID);
+    }
+
+    public function update($id = null, $data = null): bool
+    {
+        if (is_array($data)) {
+            $data = $this->normalizeDataForStorage($data);
+        }
+
+        return parent::update($id, $data);
     }
 
     /**
      * Durée de validité (en minutes) d'un mot de passe temporaire.
      */
     public const DUREE_VALIDITE_MINUTES = 60;
+
+    public function findForLogin(string $identifier): ?array
+    {
+        $identifier = trim($identifier);
+        if ($identifier === '') {
+            return null;
+        }
+
+        $columns = $this->getExistingColumns();
+
+        if (in_array('email', $columns, true)) {
+            return $this->where('email', $identifier)->first();
+        }
+
+        if (in_array('username', $columns, true)) {
+            return $this->where('username', $identifier)->first();
+        }
+
+        return null;
+    }
+
+    public function verifierMotDePasseCompat(string $saisi, array $utilisateur): bool
+    {
+        $motDePasseStocke = $utilisateur['mot_de_passe'] ?? $utilisateur['password'] ?? null;
+
+        if (empty($motDePasseStocke)) {
+            return false;
+        }
+
+        if (password_verify($saisi, $motDePasseStocke)) {
+            return true;
+        }
+
+        return $saisi === $motDePasseStocke;
+    }
 
     /**
      * Marque un compte comme ayant signalé un oubli de mot de passe.
@@ -119,6 +226,7 @@ class UserModel extends Model
     {
         return (bool) $this->update($userId, [
             'mot_de_passe'       => $nouveauMotDePasse, // sera haché par hashPassword()
+            'password'           => $nouveauMotDePasse, // compatibilité ancienne base
             'mot_de_passe_temp'  => null,
             'mdp_temp_expire_at' => null,
         ]);

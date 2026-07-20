@@ -12,8 +12,8 @@ class PrefixeModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $allowedFields    = ['prefixe', 'operateur_id'];
-    protected $useTimestamps    = true;
-    protected $createdField     = 'created_at';
-    protected $updatedField     = null;
+    protected $useTimestamps = false;
+    protected $createdField  = null;
+    protected $updatedField  = null;
     protected $dateFormat       = 'datetime';
 }

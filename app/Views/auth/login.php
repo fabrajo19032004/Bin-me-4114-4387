@@ -230,14 +230,14 @@
         </div>
         <?php endif; ?>
 
-        <form action="<?= base_url('auth/login') ?>" method="POST">
+        <form action="<?= base_url('login') ?>" method="POST">
             <?= csrf_field() ?>
 
             <div class="form-group">
-                <label>Adresse e-mail</label>
+                <label>Adresse e-mail ou nom d'utilisateur</label>
                 <div class="input-wrap">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                    <input type="email" name="email" placeholder="votre@email.com" value="<?= old('email') ?>" required autofocus>
+                    <input type="text" name="email" placeholder="votre@email.com ou admin" value="<?= old('email') ?>" required autofocus>
                 </div>
             </div>
 

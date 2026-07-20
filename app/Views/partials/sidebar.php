@@ -1,131 +1,126 @@
-<?php 
-$currentSegment = service('uri')->getSegment(2); 
+<?php
+$currentRoute = $currentRoute ?? service('uri')->getPath();
+$active = static function (string $route) use ($currentRoute): bool {
+    return str_contains($currentRoute, $route);
+};
 ?>
+
+<style>
+    .app-shell {
+        display: flex;
+        min-height: 100vh;
+        background: #f4f7fb;
+    }
+
+    .sidebar {
+        width: 260px;
+        background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
+        color: #fff;
+        padding: 24px 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .sidebar.collapsed {
+        width: 86px;
+    }
+
+    .sidebar-logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 700;
+        font-size: 1.1rem;
+        letter-spacing: .02em;
+    }
+
+    .sidebar-logo svg {
+        width: 20px;
+        height: 20px;
+        color: #fff;
+    }
+
+    .sidebar-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .sidebar-nav a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        border-radius: 10px;
+        color: #cbd5e1;
+        text-decoration: none;
+        transition: all .2s ease;
+    }
+
+    .sidebar-nav a:hover,
+    .sidebar-nav a.active {
+        background: rgba(255,255,255,.12);
+        color: #fff;
+    }
+
+    .sidebar .sidebar-footer {
+        margin-top: auto;
+        padding-top: 16px;
+        border-top: 1px solid rgba(255,255,255,.12);
+    }
+
+    .main-content {
+        flex: 1;
+        padding: 20px;
+    }
+
+    .sidebar .nav-text {
+        white-space: nowrap;
+    }
+
+    .sidebar.collapsed .nav-text,
+    .sidebar.collapsed .sidebar-logo span {
+        display: none;
+    }
+</style>
 
 <aside class="sidebar" id="sidebar">
     <div class="sidebar-logo">
-        <div class="nav-icon-circle" style="background:#fff;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M12 6v6l4 2"/>
-            </svg>
-        </div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 6v6l4 2" />
+        </svg>
         <span>Ecopanier</span>
     </div>
-    
-    <nav>
-        <!-- Dashboard -->
-        <a href="<?= base_url('magasinier/dashboard') ?>" class="nav-item <?= $currentSegment == 'dashboard' ? 'active' : '' ?>">
-            <div class="nav-icon-circle">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M21,7.5c0,.276-.224,.5-.5,.5h-3c-.276,0-.5-.224-.5-.5s.224-.5,.5-.5h3c.276,0,.5,.224,.5,.5Zm-.5,2.5h-3c-.276,0-.5,.224-.5,.5s.224,.5,.5,.5h3c.276,0,.5-.224,.5-.5s-.224-.5-.5-.5Zm0,3h-3c-.276,0-.5,.224-.5,.5s.224,.5,.5,.5h3c.276,0,.5-.224,.5-.5s-.224-.5-.5-.5Zm0,3h-3c-.276,0-.5,.224-.5,.5s.224,.5,.5,.5h3c.276,0,.5-.224,.5-.5s-.224-.5-.5-.5Zm3.5-8.5v9c0,2.481-2.019,4.5-4.5,4.5H4.5c-2.481,0-4.5-2.019-4.5-4.5V7.5C0,5.019,2.019,3,4.5,3h15c2.481,0,4.5,2.019,4.5,4.5Zm-1,0c0-1.93-1.57-3.5-3.5-3.5H4.5c-1.93,0-3.5,1.57-3.5,3.5v9c0,1.93,1.57,3.5,3.5,3.5h15c1.93,0,3.5-1.57,3.5-3.5V7.5Zm-8,4.5c0,3.309-2.691,6-6,6s-6-2.691-6-6,2.691-6,6-6,6,2.691,6,6Zm-6,5c1.198,0,2.284-.441,3.146-1.146l-3.207-3.207c-.283-.283-.439-.66-.439-1.061V7.051c-2.52,.255-4.5,2.364-4.5,4.949,0,2.757,2.243,5,5,5Zm5-5c0-2.586-1.98-4.694-4.5-4.949v4.535c0,.131,.054,.26,.146,.354l3.207,3.207c.706-.862,1.147-1.948,1.147-3.147Z"/>
-                </svg>
-            </div>
-            <span class="nav-text">Dashboard</span>
-        </a>
-        
-        <!-- État des stocks -->
-        <a href="<?= base_url('magasinier/stocks') ?>" class="nav-item <?= $currentSegment == 'stocks' ? 'active' : '' ?>">
-            <div class="nav-icon-circle">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M19.5,0H4.5C2.019,0,0,2.019,0,4.5v1c0,.815,.397,1.532,1.002,1.989,0,.004-.002,.007-.002,.011v12c0,2.481,2.019,4.5,4.5,4.5h13c2.481,0,4.5-2.019,4.5-4.5V7.5s-.002-.007-.002-.011c.605-.457,1.002-1.175,1.002-1.989v-1c0-2.481-2.019-4.5-4.5-4.5Zm2.5,19.5c0,1.93-1.57,3.5-3.5,3.5H5.5c-1.93,0-3.5-1.57-3.5-3.5V7.949c.162,.033,.329,.051,.5,.051H21.5c.171,0,.338-.018,.5-.051v11.551Zm1-14c0,.827-.673,1.5-1.5,1.5H2.5c-.827,0-1.5-.673-1.5-1.5v-1c0-1.93,1.57-3.5,3.5-3.5h15c1.93,0,3.5,1.57,3.5,3.5v1Zm-7,7c0,.276-.224,.5-.5,.5h-7c-.276,0-.5-.224-.5-.5s.224-.5,.5-.5h7c.276,0,.5,.224,.5,.5Z"/>
-                </svg>
-            </div>
-            <span class="nav-text">État des stocks</span>
-        </a>
-        
-        <!-- Catégories -->
-        <a href="<?= base_url('magasinier/categoriesProduits') ?>" class="nav-item <?= $currentSegment == 'categoriesProduits' ? 'active' : '' ?>">
-            <div class="nav-icon-circle">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M12.5,11h9c1.378,0,2.5-1.121,2.5-2.5V4.5c0-1.379-1.122-2.5-2.5-2.5h-3.086c-.131,0-.26-.054-.354-.146l-1.414-1.414c-.283-.283-.66-.439-1.061-.439h-3.086c-1.378,0-2.5,1.121-2.5,2.5v2.5H1V.5c0-.276-.224-.5-.5-.5S0,.224,0,.5V14.5c0,2.481,2.019,4.5,4.5,4.5h5.5v2.5c0,1.379,1.122,2.5,2.5,2.5h9c1.378,0,2.5-1.121,2.5-2.5v-4c0-1.379-1.122-2.5-2.5-2.5h-3.086c-.131,0-.26-.054-.354-.146l-1.414-1.414c-.283-.283-.66-.439-1.061-.439h-3.086c-1.378,0-2.5,1.121-2.5,2.5v2.5H4.5c-1.93,0-3.5-1.57-3.5-3.5V6H10v2.5c0,1.379,1.122,2.5,2.5,2.5Zm-1.5-8.5c0-.827,.673-1.5,1.5-1.5h3.086c.131,0,.26,.054,.354,.146l1.414,1.414c.283,.283,.66,.439,1.061,.439h3.086c.827,0,1.5,.673,1.5,1.5v4c0,.827-.673,1.5-1.5,1.5H12.5c-.827,0-1.5-.673-1.5-1.5V2.5Zm0,13c0-.827,.673-1.5,1.5-1.5h3.086c.131,0,.26,.054,.354,.146l1.414,1.414c.283,.283,.66,.439,1.061,.439h3.086c.827,0,1.5,.673,1.5,1.5v4c0,.827-.673,1.5-1.5,1.5H12.5c-.827,0-1.5-.673-1.5-1.5v-6Z"/>
-                </svg>
-            </div>
-            <span class="nav-text">Catégories</span>
-        </a>
-        
-        <!-- Produits -->
-        <a href="<?= base_url('magasinier/produits') ?>" class="nav-item <?= $currentSegment == 'produits' ? 'active' : '' ?>">
-            <div class="nav-icon-circle">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="m20.38,4.693L13.682.431c-1.053-.577-2.311-.577-3.363,0L3.62,4.694c-1.015.646-1.62,1.75-1.62,2.953v11.854c0,2.481,2.019,4.5,4.5,4.5h11c2.481,0,4.5-2.019,4.5-4.5V7.646c0-1.203-.605-2.306-1.62-2.952Zm.62,14.807c0,1.93-1.57,3.5-3.5,3.5H6.5c-1.93,0-3.5-1.57-3.5-3.5V7.646c0-.859.433-1.648,1.157-2.109L10.812,1.3c.752-.404,1.642-.402,2.36-.009l6.67,4.246c.725.461,1.157,1.25,1.157,2.108v11.854ZM12,5c-1.103,0-2,.897-2,2s.897,2,2,2,2-.897,2-2-.897-2-2-2Zm0,3c-.552,0-1-.449-1-1s.448-1,1-1,1,.449,1,1-.448,1-1,1Z"/>
-                </svg>
-            </div>
-            <span class="nav-text">Produits</span>
-        </a>
-        
-        <!-- Entrées stock -->
-        <a href="<?= base_url('magasinier/entrees-stock') ?>" class="nav-item <?= $currentSegment == 'entrees-stock' ? 'active' : '' ?>">
-            <div class="nav-icon-circle">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M12,0C5.383,0,0,5.383,0,12s5.383,12,12,12,12-5.383,12-12S18.617,0,12,0Zm0,23c-6.065,0-11-4.935-11-11S5.935,1,12,1s11,4.935,11,11-4.935,11-11,11Z"/>
-                    <path d="M14.475,9.343c-.197-.197-.5-.474-.817-.756-.944-.838-2.368-.839-3.314,0-.317,.282-.62,.559-.814,.753l-2.879,2.828c-.197,.193-.199,.51-.006,.707,.194,.197,.51,.2,.707,.006l2.882-2.831c.188-.188,.475-.448,.774-.715,.566-.502,1.42-.502,1.986,0,.3,.267,.587,.527,.777,.718l2.879,2.828c.098,.096,.224,.144,.351,.144,.13,0,.259-.05,.356-.149,.193-.197,.191-.514-.006-.707l-2.876-2.825Z"/>
-                </svg>
-            </div>
-            <span class="nav-text">Entrées stock</span>
-        </a>
-        
-        <!-- Sorties stock -->
-        <a href="<?= base_url('magasinier/sorties-stock') ?>" class="nav-item <?= $currentSegment == 'sorties-stock' ? 'active' : '' ?>">
-            <div class="nav-icon-circle">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M12,0C5.383,0,0,5.383,0,12s5.383,12,12,12,12-5.383,12-12S18.617,0,12,0Zm0,23c-6.065,0-11-4.935-11-11S5.935,1,12,1s11,4.935,11,11-4.935,11-11,11Z"/>
-                    <path d="M16.649,11.119l-2.882,2.831c-.188,.188-.475,.448-.774,.715-.566,.502-1.42,.502-1.986,0-.3-.267-.587-.527-.777-.718l-2.879-2.828c-.197-.193-.514-.191-.707,.006s-.191,.514,.006,.707l2.876,2.825c.197,.197,.5,.474,.817,.756,.473,.419,1.064,.628,1.657,.628s1.185-.209,1.657-.628c.317-.282,.62-.559,.814-.753l2.879-2.828c.197-.193,.199-.51,.006-.707-.193-.196-.509-.199-.707-.006Z"/>
-                </svg>
-            </div>
-            <span class="nav-text">Sorties stock</span>
-        </a>
-        
-        <!-- Historique -->
-        <a href="<?= base_url('magasinier/historique') ?>" class="nav-item <?= $currentSegment == 'historique' ? 'active' : '' ?>">
-            <div class="nav-icon-circle">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M12,24C5.383,24,0,18.617,0,12S5.383,0,12,0s12,5.383,12,12-5.383,12-12,12ZM12,1C5.935,1,1,5.935,1,12s4.935,11,11,11,11-4.935,11-11S18.065,1,12,1Zm5,11.5c0-.276-.224-.5-.5-.5h-4.5V5.5c0-.276-.224-.5-.5-.5s-.5,.224-.5,.5v7c0,.276,.224,.5,.5,.5h5c.276,0,.5-.224,.5-.5Z"/>
-                </svg>
-            </div>
-            <span class="nav-text">Historique</span>
-        </a>
 
-         <a href="<?= base_url('magasinier/depenses') ?>" class="nav-item <?= $currentSegment == 'historique' ? 'active' : '' ?>">
-            <div class="nav-icon-circle">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M12,24C5.383,24,0,18.617,0,12S5.383,0,12,0s12,5.383,12,12-5.383,12-12,12ZM12,1C5.935,1,1,5.935,1,12s4.935,11,11,11,11-4.935,11-11S18.065,1,12,1Zm5,11.5c0-.276-.224-.5-.5-.5h-4.5V5.5c0-.276-.224-.5-.5-.5s-.5,.224-.5,.5v7c0,.276,.224,.5,.5,.5h5c.276,0,.5-.224,.5-.5Z"/>
-                </svg>
-            </div>
-            <span class="nav-text">Depenses</span>
+    <nav class="sidebar-nav">
+        <a href="<?= base_url('operator/prefixes') ?>" class="<?= $active('operator/prefixes') ? 'active' : '' ?>">
+            <span>🔢</span>
+            <span class="nav-text">Préfixes</span>
+        </a>
+        <a href="<?= base_url('operator/types') ?>" class="<?= $active('operator/types') ? 'active' : '' ?>">
+            <span>🧾</span>
+            <span class="nav-text">Types</span>
+        </a>
+        <a href="<?= base_url('operator/baremes') ?>" class="<?= $active('operator/baremes') ? 'active' : '' ?>">
+            <span>📊</span>
+            <span class="nav-text">Barèmes</span>
+        </a>
+        <a href="<?= base_url('operator/gains') ?>" class="<?= $active('operator/gains') ? 'active' : '' ?>">
+            <span>💰</span>
+            <span class="nav-text">Gains</span>
+        </a>
+        <a href="<?= base_url('operator/comptes') ?>" class="<?= $active('operator/comptes') ? 'active' : '' ?>">
+            <span>👥</span>
+            <span class="nav-text">Comptes</span>
         </a>
     </nav>
-    
-    <div class="sidebar-toggle">
-        <button class="toggle-btn" onclick="toggleSidebar()" title="Réduire le menu">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="m16 12c0 .552-.448 1-1 1s-1-.448-1-1 .448-1 1-1 1 .448 1 1zm-6 0c0 .552.448 1 1 1s1-.448 1-1-.448-1-1-1-1 .448-1 1zm9-1c-.552 0-1 .448-1 1s.448 1 1 1 1-.448 1-1-.448-1-1-1zm4 0c-.552 0-1 .448-1 1s.448 1 1 1 1-.448 1-1-.448-1-1-1zm-21.268 2.768c-.472-.473-.732-1.1-.732-1.768s.26-1.295.732-1.768l8.379-8.378c.195-.195.195-.512 0-.707s-.512-.195-.707 0l-8.379 8.378c-.661.661-1.025 1.54-1.025 2.475s.364 1.813 1.025 2.475l8.378 8.379c.195.195.512.195.707 0s.195-.512 0-.707zm11.25-9.993c-.195-.195-.512-.195-.707 0l-6.596 6.596c-.898.898-.898 2.36 0 3.258l6.596 6.596c.195.195.512.195.707 0s.195-.512 0-.707l-6.596-6.596c-.508-.508-.508-1.335 0-1.844l6.596-6.596c.195-.195.195-.512 0-.707z"/>
-            </svg>
-        </button>
-    </div>
-    
+
     <div class="sidebar-footer">
-        <a href="<?= base_url('auth/logout') ?>">
-            <div class="nav-icon-circle" style="width:30px;height:30px;">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="m8 0c-3.309 0-6 2.691-6 6s2.691 6 6 6 6-2.691 6-6-2.691-6-6-6zm0 11c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5zm3.964 4.269c-.104.255-.396.378-.651.276-.894-.361-1.84-.545-2.812-.545-4.136 0-7.5 3.364-7.5 7.5v1c0 .276-.224.5-.5.5s-.5-.224-.5-.5v-1c0-4.687 3.813-8.5 8.5-8.5 1.102 0 2.174.208 3.187.618.256.104.38.395.276.651zm7.036 8.231c0 .276-.224.5-.5.5h-2c-1.379 0-2.5-1.122-2.5-2.5v-6c0-1.378 1.121-2.5 2.5-2.5h2c.276 0 .5.224.5.5s-.224.5-.5.5h-2c-.827 0-1.5.673-1.5 1.5v6c0 .827.673 1.5 1.5 1.5h2c.276 0 .5.224.5.5zm4.996-4.979c0 .402-.166.818-.481 1.092l-2.684 2.366c-.207.182-.523.164-.706-.044-.183-.207-.163-.523.044-.706l2.528-2.229h-5.197c-.276 0-.5-.224-.5-.5s.224-.5.5-.5h5.062l-2.393-2.11c-.207-.183-.227-.499-.044-.706.183-.208.498-.227.706-.044l2.688 2.37c.296.254.477.619.477 1.011z"/>
-                </svg>
-            </div>
-            <span>Déconnexion</span>
+        <a href="<?= base_url('auth/logout') ?>" class="<?= $active('auth/logout') ? 'active' : '' ?>">
+            <span>↩</span>
+            <span class="nav-text">Déconnexion</span>
         </a>
     </div>
 </aside>
-
-<script>
-    function toggleSidebar() {
-        const sidebar = document.getElementById('sidebar');
-        sidebar.classList.toggle('collapsed');
-        localStorage.setItem('sidebarCollapsed', sidebar.classList.contains('collapsed'));
-    }
-    
-    document.addEventListener('DOMContentLoaded', function() {
-        if (localStorage.getItem('sidebarCollapsed') === 'true') {
-            document.getElementById('sidebar').classList.add('collapsed');
-        }
-    });
-</script>

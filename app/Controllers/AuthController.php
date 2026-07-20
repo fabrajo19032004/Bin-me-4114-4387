@@ -30,51 +30,48 @@ class AuthController extends BaseController
 
     public function loginPost()
     {
-        $email      = $this->request->getPost('email');
-        $motDePasse = $this->request->getPost('mot_de_passe');
+        $identifiant = trim((string) $this->request->getPost('email'));
+        $motDePasse  = (string) $this->request->getPost('mot_de_passe');
 
-        if (empty($email) || empty($motDePasse)) {
-            return redirect()->to(base_url('auth/login'))
+        if (empty($identifiant) || empty($motDePasse)) {
+            return redirect()->to(base_url('login'))
                 ->withInput()
                 ->with('error', 'Veuillez remplir tous les champs.');
         }
 
         $model       = new UserModel();
-        $utilisateur = $model->where('email', $email)->first();
+        $utilisateur = $model->findForLogin($identifiant);
 
         if (!$utilisateur) {
-            return redirect()->to(base_url('auth/login'))
+            return redirect()->to(base_url('login'))
                 ->withInput()
-                ->with('error', 'Adresse e-mail introuvable.');
+                ->with('error', 'Identifiant introuvable.');
         }
 
         // 1. Mot de passe normal → connexion classique
-        if ($this->verifierMotDePasse($motDePasse, $utilisateur['mot_de_passe'])) {
+        if ($model->verifierMotDePasseCompat($motDePasse, $utilisateur)) {
             $this->creerSession($utilisateur);
             return $this->redirectParRole();
         }
 
         // 2. Sinon, est-ce un mot de passe TEMPORAIRE valide (usage unique) ?
         if ($model->verifierMotDePasseTemporaire($utilisateur, $motDePasse)) {
-            // On ouvre une mini-session "changement de mdp obligatoire" :
-            // l'utilisateur n'est PAS encore connecté normalement, il doit
-            // d'abord définir son nouveau mot de passe (étape 2).
             session()->set([
                 'changement_mdp_user_id' => $utilisateur['id'],
-                'changement_mdp_etape'   => 2, // étape 1 (saisie du mdp temp) déjà validée
+                'changement_mdp_etape'   => 2,
             ]);
 
             return redirect()->to(base_url('auth/changer-mot-de-passe/nouveau'));
         }
 
-        return redirect()->to(base_url('auth/login'))
+        return redirect()->to(base_url('login'))
             ->withInput()
             ->with('error', 'Mot de passe incorrect.');
     }
 
     public function registerAdmin()
     {
-        return view('auth/register_admin'); // Créez une vue simple avec nom, email, mot_de_passe
+        return view('auth/register_admin');
     }
 
     public function registerAdminPost()
@@ -90,34 +87,20 @@ class AuthController extends BaseController
         }
 
         $model = new UserModel();
-        
+
         $data = [
             'nom'          => $nom,
             'email'        => $email,
             'mot_de_passe' => $motDePasse,
-            'role'         => 'admin'
+            'role'         => 'admin',
         ];
 
         if ($model->insert($data)) {
-            return redirect()->to(base_url('auth/login'))
+            return redirect()->to(base_url('login'))
                 ->with('success', 'Compte administrateur créé avec succès. Vous pouvez maintenant vous connecter.');
         }
 
         return redirect()->back()->withInput()->with('error', 'Erreur lors de la création du compte.');
-    }
-
-    /**
-     * Vérifie le mot de passe (Supporte le Hash ET le texte clair de la base actuelle)
-     */
-    private function verifierMotDePasse($saisi, $stocke)
-    {
-        // 1. Tente la vérification par Hash (Standard CI4)
-        if (password_verify($saisi, $stocke)) {
-            return true;
-        }
-        
-        // 2. Fallback: Comparaison directe (Pour supporter 'admin123' sans modifier la DB)
-        return $saisi === $stocke;
     }
 
     /**
@@ -128,16 +111,32 @@ class AuthController extends BaseController
         session()->set([
             'connecte' => true,
             'user_id'  => $utilisateur['id'],
-            'nom'      => $utilisateur['nom'],
-            'email'    => $utilisateur['email'],
-            'role'     => $utilisateur['role'],
+            'nom'      => $utilisateur['nom'] ?? $utilisateur['username'] ?? '',
+            'email'    => $utilisateur['email'] ?? $utilisateur['username'] ?? '',
+            'role'     => $this->normaliserRole($utilisateur['role'] ?? ''),
         ]);
+    }
+
+    private function normaliserRole($role): string
+    {
+        $roleNormalise = strtoupper(trim((string) $role));
+
+        $roleMap = [
+            'ADMIN'           => 'admin',
+            'OPERATEUR'       => 'admin',
+            'AGENT_COMMERCIAL' => 'agent_commercial',
+            'AGENT'           => 'agent_commercial',
+            'MAGASINIER'      => 'magasinier',
+            'LIVREUR'         => 'livreur',
+        ];
+
+        return $roleMap[$roleNormalise] ?? strtolower($roleNormalise);
     }
 
     public function logout()
     {
         session()->destroy();
-        return redirect()->to(base_url('auth/login'))
+        return redirect()->to(base_url('login'))
             ->with('success', 'Vous avez été déconnecté avec succès.');
     }
 
@@ -158,16 +157,13 @@ class AuthController extends BaseController
         }
 
         $model       = new UserModel();
-        $utilisateur = $model->where('email', $email)->first();
+        $utilisateur = $model->findForLogin($email);
 
         if (!$utilisateur) {
-            // On ne révèle pas si l'email existe ou non (sécurité)
             return redirect()->to(base_url('auth/mot-de-passe-oublie'))
                 ->with('success', 'Si cet e-mail existe, votre demande a été envoyée à l\'administrateur.');
         }
 
-        // Marque le compte comme "demande de réinitialisation en attente"
-        // → visible par l'administrateur (notification) dans la gestion des utilisateurs.
         $model->signalerDemandeOubli((int) $utilisateur['id']);
 
         return redirect()->to(base_url('auth/mot-de-passe-oublie'))
@@ -190,7 +186,7 @@ class AuthController extends BaseController
     public function changerMotDePasseNouveau()
     {
         if (!session()->get('changement_mdp_user_id') || session()->get('changement_mdp_etape') < 2) {
-            return redirect()->to(base_url('auth/login'))
+            return redirect()->to(base_url('login'))
                 ->with('error', 'Veuillez d\'abord vous connecter avec votre mot de passe temporaire.');
         }
 
@@ -207,7 +203,7 @@ class AuthController extends BaseController
         $userId = session()->get('changement_mdp_user_id');
 
         if (!$userId || session()->get('changement_mdp_etape') < 2) {
-            return redirect()->to(base_url('auth/login'))
+            return redirect()->to(base_url('login'))
                 ->with('error', 'Session de changement de mot de passe expirée. Veuillez recommencer.');
         }
 
@@ -231,7 +227,7 @@ class AuthController extends BaseController
 
         if (!$utilisateur) {
             session()->remove(['changement_mdp_user_id', 'changement_mdp_etape']);
-            return redirect()->to(base_url('auth/login'))->with('error', 'Utilisateur introuvable.');
+            return redirect()->to(base_url('login'))->with('error', 'Utilisateur introuvable.');
         }
 
         $model->finaliserChangementMotDePasse((int) $userId, $nouveauMdp);
@@ -252,16 +248,16 @@ class AuthController extends BaseController
 
         switch ($role) {
             case 'admin':
-                return redirect()->to(base_url('admin/dashboard'));
+                return redirect()->to(base_url('operator/prefixes'));
             case 'agent_commercial':
-                return redirect()->to(base_url('agent/dashboard'));
+                return redirect()->to(base_url('operator/prefixes'));
             case 'magasinier':
-                return redirect()->to(base_url('magasinier/stocks'));
+                return redirect()->to(base_url('operator/prefixes'));
             case 'livreur':
-                return redirect()->to(base_url('livreur/reservations'));
+                return redirect()->to(base_url('operator/prefixes'));
             default:
                 session()->destroy();
-                return redirect()->to(base_url('auth/login'))
+                return redirect()->to(base_url('login'))
                     ->with('error', 'Rôle non reconnu. Contactez l\'administrateur.');
         }
     }

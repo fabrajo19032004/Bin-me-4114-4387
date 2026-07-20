@@ -182,7 +182,7 @@
         <button type="submit" class="btn-submit">Envoyer la demande</button>
     </form>
 
-    <a href="<?= base_url('auth/login') ?>" class="btn-back">← Retour à la connexion</a>
+    <a href="<?= base_url('login') ?>" class="btn-back">← Retour à la connexion</a>
 </div>
 
 </body>
