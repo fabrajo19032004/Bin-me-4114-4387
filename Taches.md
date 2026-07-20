@@ -69,7 +69,7 @@ TODO Liste - Version 1 (4114-4387)
     - Vérifier les relations entre les tables (ok)
 
 
-4. Côté Client (En cours)
+4. Côté Client (4114)
 
     - Connexion
         - Connexion avec le numéro de téléphone
@@ -103,7 +103,7 @@ TODO Liste - Version 1 (4114-4387)
 
 
 
-5. Développement (En cours)
+5. Développement (4387-4114)
 
     - Créer les Models
     - Créer les Controllers
@@ -114,11 +114,11 @@ TODO Liste - Version 1 (4114-4387)
 
 
 
-6. Interface
+6. Interface 
 
     - Créer la page de connexion
     - Créer le Dashboard Opérateur
     - Créer le Dashboard Client
     - Créer les pages CRUD
-    - Adapter l'interface avec Bootstrap
+    - Adapter l'interface avec Bootstrap (non fini)
     - Vérifier le responsive    

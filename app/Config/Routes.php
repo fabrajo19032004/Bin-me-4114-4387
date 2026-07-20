@@ -10,7 +10,11 @@ $routes->get('/test-db', 'Home::testDb');
 
 // Auth
 $routes->get('auth/login', 'AuthController::login');
+$routes->get('auth/login/admin', 'AuthController::loginAdmin');
+$routes->get('auth/login/client', 'AuthController::loginClient');
 $routes->post('auth/login', 'AuthController::loginPost');
+$routes->post('auth/login/admin', 'AuthController::loginAdminPost');
+$routes->post('auth/login/client', 'AuthController::loginClientPost');
 $routes->get('auth/logout', 'AuthController::logout');
 $routes->get('auth/mot-de-passe-oublie', 'AuthController::motDePasseOublie');
 $routes->post('auth/mot-de-passe-oublie', 'AuthController::motDePasseOubliePost');
