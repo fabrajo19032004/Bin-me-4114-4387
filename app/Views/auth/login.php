@@ -234,10 +234,10 @@
             <?= csrf_field() ?>
 
             <div class="form-group">
-                <label>Adresse e-mail</label>
+                <label>Nom d'utilisateur</label>
                 <div class="input-wrap">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                    <input type="email" name="email" placeholder="votre@email.com" value="<?= old('email') ?>" required autofocus>
+                    <input type="text" name="username" placeholder="admin ou téléphone" value="<?= old('username') ?>" required autofocus>
                 </div>
             </div>
 
@@ -245,7 +245,7 @@
                 <label>Mot de passe</label>
                 <div class="input-wrap">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                    <input type="password" name="mot_de_passe" placeholder="********" required>
+                    <input type="password" name="password" placeholder="********" required>
                 </div>
             </div>
 

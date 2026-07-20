@@ -18,6 +18,17 @@ $routes->get('auth/logout',                  'AuthController::logout');
 $routes->get('auth/mot-de-passe-oublie',     'AuthController::motDePasseOublie');
 $routes->post('auth/mot-de-passe-oublie',    'AuthController::motDePasseOubliePost');
 
+// ─── Mobile Money ───────────────────────────────────────────────────────
+$routes->get('mobile-money/login', 'MobileMoneyController::login');
+$routes->post('mobile-money/login', 'MobileMoneyController::loginPost');
+$routes->get('mobile-money/logout', 'MobileMoneyController::logout');
+$routes->get('mobile-money', 'MobileMoneyController::index');
+$routes->get('mobile-money/client', 'MobileMoneyController::clientDashboard');
+$routes->get('mobile-money/operator', 'MobileMoneyController::operatorDashboard');
+$routes->post('mobile-money/deposit', 'MobileMoneyController::deposit');
+$routes->post('mobile-money/withdraw', 'MobileMoneyController::withdraw');
+$routes->post('mobile-money/transfer', 'MobileMoneyController::transfer');
+
 $routes->get('auth/changer-mot-de-passe/nouveau',  'AuthController::changerMotDePasseNouveau');
 $routes->post('auth/changer-mot-de-passe/nouveau', 'AuthController::changerMotDePasseNouveauPost');
 
