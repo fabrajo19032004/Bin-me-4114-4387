@@ -106,29 +106,38 @@ class AuthController extends BaseController
 
     public function loginClientPost()
     {
-        $username = $this->request->getPost('username');
+        $prefix = $this->request->getPost('prefixe');
+        $restPhone = $this->request->getPost('rest_phone');
         $password = $this->request->getPost('password');
 
-        if (empty($username) || empty($password)) {
+        if (empty($prefix) || empty($restPhone) || empty($password)) {
             return redirect()->to(base_url('auth/login/client'))
                 ->withInput()
                 ->with('error', 'Veuillez remplir tous les champs.');
         }
 
+        $telephone = $this->buildPhoneNumber($prefix, $restPhone);
+
+        if ($telephone === '') {
+            return redirect()->to(base_url('auth/login/client'))
+                ->withInput()
+                ->with('error', 'Le numéro est invalide.');
+        }
+
+        $prefixModel = new PrefixModel();
+        if (!$prefixModel->isAllowed($telephone)) {
+            return redirect()->to(base_url('auth/login/client'))
+                ->withInput()
+                ->with('error', 'Ce préfixe n’est pas autorisé.');
+        }
+
         $userModel = new UserModel();
-        $user = $userModel->authenticate($username, $password);
+        $user = $userModel->authenticate($telephone, $password);
 
-        if (!$user && $this->looksLikePhone($username)) {
-            $prefixModel = new PrefixModel();
-            if (!$prefixModel->isAllowed($username)) {
-                return redirect()->to(base_url('auth/login/client'))
-                    ->withInput()
-                    ->with('error', 'Ce préfixe n’est pas autorisé.');
-            }
-
+        if (!$user) {
             $clientModel = new ClientModel();
-            $clientModel->firstOrCreate($username);
-            $user = $userModel->createClientUser($username, $password);
+            $clientModel->firstOrCreate($telephone);
+            $user = $userModel->createClientUser($telephone, $password);
         }
 
         if (!$user || strtoupper((string) ($user['role'] ?? '')) !== 'CLIENT') {
@@ -174,6 +183,18 @@ class AuthController extends BaseController
     private function looksLikePhone(string $value): bool
     {
         return preg_match('/^0[0-9]{8,9}$/', $value) === 1;
+    }
+
+    private function buildPhoneNumber(string $prefix, string $restPhone): string
+    {
+        $cleanPrefix = preg_replace('/\D+/', '', $prefix) ?? '';
+        $cleanRest = preg_replace('/\D+/', '', $restPhone) ?? '';
+
+        if ($cleanPrefix === '' || $cleanRest === '') {
+            return '';
+        }
+
+        return $cleanPrefix . $cleanRest;
     }
 
     private function storeSession(array $user): void
