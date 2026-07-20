@@ -26,7 +26,7 @@ class Filters extends BaseConfig
             // 'honeypot',
             'invalidchars',
             'secureheaders',
-            'auth' => ['except' => ['operator/prefixes', 'login', 'register', 'auth/*']],
+            'auth' => ['except' => [ 'login', 'register', 'auth/*']],
         ],
         'after' => [
             'toolbar',
