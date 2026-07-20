@@ -69,7 +69,7 @@ TODO Liste - Version 1 (4114-4387)
     - Vérifier les relations entre les tables (ok)
 
 
-4. Côté Client (4114)
+4. Côté Client (4114) 
 
     - Connexion
         - Connexion avec le numéro de téléphone
@@ -122,3 +122,37 @@ TODO Liste - Version 1 (4114-4387)
     - Créer les pages CRUD
     - Adapter l'interface avec Bootstrap (non fini)
     - Vérifier le responsive    
+
+
+-- Version 2:
+
+1. Base de données (En cours)
+
+    - Modifier les tables existantes si nécessaire
+        - Ajouter les nouveaux préfixes des autres opérateurs
+        - Ajouter le pourcentage de commission pour les transferts inter-opérateurs
+        - Mettre à jour base.sql
+
+2. Côté Opérateur (4387)
+
+    - Gestion des préfixes 
+        - Ajouter les préfixes des autres opérateurs (031, 032...)
+        - Modifier les préfixes
+        - Supprimer les préfixes
+        - Identifier l'opérateur associé à chaque préfixe
+
+    - Configuration des commissions
+        - Ajouter un pourcentage de commission
+        - Modifier le pourcentage
+        - Appliquer la commission uniquement pour les transferts vers les autres opérateurs
+
+    - Situation des gains
+        - Séparer les gains des transferts internes
+        - Séparer les gains des transferts vers les autres opérateurs
+        - Afficher les frais de retrait
+        - Afficher les frais de transfert
+
+    - Situation des montants à envoyer
+        - Calculer les montants destinés à chaque opérateur
+        - Afficher le total par opérateur
+        - Générer un récapitulatif des montants

@@ -108,9 +108,8 @@ class AuthController extends BaseController
     {
         $prefix = $this->request->getPost('prefixe');
         $restPhone = $this->request->getPost('rest_phone');
-        $password = $this->request->getPost('password');
 
-        if (empty($prefix) || empty($restPhone) || empty($password)) {
+        if (empty($prefix) || empty($restPhone)) {
             return redirect()->to(base_url('auth/login/client'))
                 ->withInput()
                 ->with('error', 'Veuillez remplir tous les champs.');
@@ -132,12 +131,19 @@ class AuthController extends BaseController
         }
 
         $userModel = new UserModel();
-        $user = $userModel->authenticate($telephone, $password);
+        $user = $userModel->where('username', $telephone)->first();
+
+        $clientModel = new ClientModel();
+        $client = $clientModel->findByTelephone($telephone);
+
+        if (!$client) {
+            return redirect()->to(base_url('auth/login/client'))
+                ->withInput()
+                ->with('error', 'Ce numéro client n’existe pas.');
+        }
 
         if (!$user) {
-            $clientModel = new ClientModel();
-            $clientModel->firstOrCreate($telephone);
-            $user = $userModel->createClientUser($telephone, $password);
+            $user = $userModel->createClientUser($telephone);
         }
 
         if (!$user || strtoupper((string) ($user['role'] ?? '')) !== 'CLIENT') {

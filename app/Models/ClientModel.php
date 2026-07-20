@@ -29,6 +29,11 @@ class ClientModel extends Model
         return $this->where('telephone', $telephone)->first();
     }
 
+    public function findByTelephone(string $telephone): ?array
+    {
+        return $this->where('telephone', $telephone)->first();
+    }
+
     public function updateBalance(int $id, float $balance): bool
     {
         return (bool) $this->update($id, ['solde' => $balance]);
