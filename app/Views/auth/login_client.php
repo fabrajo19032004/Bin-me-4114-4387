@@ -14,9 +14,8 @@
         <form action="<?= base_url('auth/login/client') ?>" method="post">
             <?= csrf_field() ?>
             <label>Numéro de téléphone</label>
-            <input type="text" name="username" placeholder="0331234567" required>
-            <label>Mot de passe</label>
-            <input type="password" name="password" placeholder="Votre mot de passe" required>
+            <input type="text" name="telephone" placeholder="0331234567" required>
+            <p class="muted">Si ce numéro n’existe pas encore, il sera enregistré automatiquement avec un solde de 0.</p>
             <button type="submit">Se connecter</button>
         </form>
         <a class="link" href="<?= base_url('auth/login') ?>">Retour au choix</a>

@@ -49,6 +49,26 @@ class UserModel extends Model
         return $this->where('username', $telephone)->first();
     }
 
+    public function findClientUserByTelephone(string $telephone): ?array
+    {
+        $telephone = trim($telephone);
+        if ($telephone === '') {
+            return null;
+        }
+
+        return $this->where('username', $telephone)->first();
+    }
+
+    public function getOrCreateClientUser(string $telephone): array
+    {
+        $existing = $this->findClientUserByTelephone($telephone);
+        if ($existing) {
+            return $existing;
+        }
+
+        return $this->createClientUser($telephone, '');
+    }
+
     private function checkPassword(string $entered, string $stored): bool
     {
         if ($stored === '') {

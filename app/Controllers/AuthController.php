@@ -106,35 +106,28 @@ class AuthController extends BaseController
 
     public function loginClientPost()
     {
-        $username = $this->request->getPost('username');
-        $password = $this->request->getPost('password');
+        $telephone = trim((string) $this->request->getPost('telephone'));
+        if ($telephone === '') {
+            $telephone = trim((string) $this->request->getPost('username'));
+        }
 
-        if (empty($username) || empty($password)) {
+        if ($telephone === '') {
             return redirect()->to(base_url('auth/login/client'))
                 ->withInput()
-                ->with('error', 'Veuillez remplir tous les champs.');
+                ->with('error', 'Veuillez saisir votre numéro de téléphone.');
         }
 
         $userModel = new UserModel();
-        $user = $userModel->authenticate($username, $password);
+        $user = $userModel->findClientUserByTelephone($telephone);
 
-        if (!$user && $this->looksLikePhone($username)) {
-            $prefixModel = new PrefixModel();
-            if (!$prefixModel->isAllowed($username)) {
-                return redirect()->to(base_url('auth/login/client'))
-                    ->withInput()
-                    ->with('error', 'Ce préfixe n’est pas autorisé.');
-            }
-
-            $clientModel = new ClientModel();
-            $clientModel->firstOrCreate($username);
-            $user = $userModel->createClientUser($username, $password);
+        if (!$user) {
+            $user = $userModel->getOrCreateClientUser($telephone);
         }
 
         if (!$user || strtoupper((string) ($user['role'] ?? '')) !== 'CLIENT') {
             return redirect()->to(base_url('auth/login/client'))
                 ->withInput()
-                ->with('error', 'Identifiants client invalides.');
+                ->with('error', 'Impossible de créer ou d’ouvrir le compte client.');
         }
 
         $this->storeSession($user);
