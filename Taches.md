@@ -8,23 +8,23 @@ TODO Liste - Version 1 (4114-4387)
         - Étudier les anciens cours et PDF de Monsieur :(ok)
             -Pour mise en place et révision codegniter (ok)
 
-    - Configuration SQLite
+    - Configuration SQLite (4114)
         - Installer/activer SQLite (Pour 4114-4387) (ok)
         - Intégrer SQLite dans le projet (4114) (ok)
         - Configurer la connexion à la base de données (ok) 
 
-    - Initialisation Git
+    - Initialisation Git (4387)
         - Créer un dépôt GitHub public (ok)
         - Initialiser Git (ok)
         - Envoyer la structure du projet (ok)
         - Inviter le binôme  (ok)
 
-    - Création de base.sql
-        - Créer le fichier à la racine du projet
-        - Ajouter les scripts de création des tables
-        - Ajouter les données nécessaires (si besoin)
+    - Création de base.sql (4387)
+        - Créer le fichier à la racine du projet (ok)
+        - Ajouter  les scripts de création des tables (ok)
+        - Ajouter les données nécessaires (si besoin) (ok)
 
-    - Création de Taches.md
-        - Lister les tâches du projet
-        - Répartir les tâches entre les deux étudiants
-        - Mettre à jour le fichier après chaque livraison
+    - Création de Taches.md (binôme)
+        - Lister les tâches du projet (ok)
+        - Répartir les tâches entre les deux étudiants (ok)
+        - Mettre à jour le fichier après chaque livraison (ok)
