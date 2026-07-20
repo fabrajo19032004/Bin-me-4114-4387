@@ -95,7 +95,22 @@
         .form-panel p.subtitle {
             color: rgba(255,255,255,0.5);
             font-size: 0.9rem;
-            margin-bottom: 36px;
+            margin-bottom: 18px;
+        }
+
+        .help-box {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 12px;
+            padding: 12px 14px;
+            margin-bottom: 24px;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.5;
+        }
+
+        .help-box strong {
+            color: #fff;
         }
 
         .alert {
@@ -216,6 +231,12 @@
         <h2>Bon retour</h2>
         <p class="subtitle">Connectez-vous avec votre adresse e-mail professionnelle</p>
 
+        <div class="help-box">
+            <strong>Test rapide :</strong><br>
+            Opérateur : <strong>admin</strong> / <strong>admin123</strong><br>
+            Client : utilisez un numéro de téléphone autorisé comme <strong>0331234567</strong>
+        </div>
+
         <?php if (session()->getFlashdata('error')): ?>
         <div class="alert alert-error">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
@@ -234,10 +255,10 @@
             <?= csrf_field() ?>
 
             <div class="form-group">
-                <label>Adresse e-mail</label>
+                <label>Nom d'utilisateur</label>
                 <div class="input-wrap">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                    <input type="email" name="email" placeholder="votre@email.com" value="<?= old('email') ?>" required autofocus>
+                    <input type="text" name="username" placeholder="admin ou téléphone" value="<?= old('username') ?>" required autofocus>
                 </div>
             </div>
 
@@ -245,7 +266,7 @@
                 <label>Mot de passe</label>
                 <div class="input-wrap">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                    <input type="password" name="mot_de_passe" placeholder="********" required>
+                    <input type="password" name="password" placeholder="********" required>
                 </div>
             </div>
 
