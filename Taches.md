@@ -28,3 +28,29 @@ TODO Liste - Version 1 (4114-4387)
         - Lister les tâches du projet (ok)
         - Répartir les tâches entre les deux étudiants (ok)
         - Mettre à jour le fichier après chaque livraison (ok)
+
+
+2. Côté Opérateur
+
+    - Gestion des préfixes
+        - Ajouter un préfixe (033, 037...)
+        - Modifier un préfixe
+        - Supprimer un préfixe
+        - Lister les préfixes
+
+    - Gestion des types d'opérations
+        - Ajouter un dépôt
+        - Ajouter un retrait
+        - Ajouter un transfert
+        - Modifier un type d'opération
+
+    - Gestion des barèmes de frais
+        - Ajouter une tranche de frais
+        - Modifier une tranche
+        - Supprimer une tranche
+        - Calculer automatiquement les frais selon le montant
+
+    - Consultation
+        - Afficher les gains sur les retraits
+        - Afficher les gains sur les transferts
+        - Afficher la situation des comptes clients
