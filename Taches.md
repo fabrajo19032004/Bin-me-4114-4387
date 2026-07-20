@@ -30,7 +30,7 @@ TODO Liste - Version 1 (4114-4387)
         - Mettre à jour le fichier après chaque livraison (ok)
 
 
-2. Côté Opérateur
+2. Côté Opérateur (En cours) (4387)
 
     - Gestion des préfixes
         - Ajouter un préfixe (033, 037...)
