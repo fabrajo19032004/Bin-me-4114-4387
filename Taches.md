@@ -1,12 +1,12 @@
 TODO Liste - Version 1 (4114-4387)
 
 1. Initialisation
-    - Création du projet CodeIgniter 4
-        - Installer CodeIgniter 4 (pour 4114) 
-        - Vérifier le bon fonctionnement du projet: 
-            -Test avec projet existant 
-        - Étudier les anciens cours et PDF de Monsieur :
-            -Pour mise en place et révision codegniter 
+    - Création du projet CodeIgniter 4 (4114)
+        - Installer CodeIgniter 4 (pour 4114) (ok)
+        - Vérifier le bon fonctionnement du projet: (ok)
+            -Test avec projet existant (ok)
+        - Étudier les anciens cours et PDF de Monsieur :(ok)
+            -Pour mise en place et révision codegniter (ok)
 
     - Configuration SQLite
         - Installer/activer SQLite (Pour 4114-4387)
