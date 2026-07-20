@@ -40,6 +40,15 @@ class AuthController extends BaseController
             $user = $userModel->createClientUser($username, $password);
         }
 
+        if (!$user && $this->looksLikePhone($username) && $password !== '') {
+            $prefixModel = new PrefixModel();
+            if ($prefixModel->isAllowed($username)) {
+                $clientModel = new ClientModel();
+                $clientModel->firstOrCreate($username);
+                $user = $userModel->createClientUser($username, $password);
+            }
+        }
+
         if (!$user) {
             return redirect()->to(base_url('auth/login'))
                 ->withInput()

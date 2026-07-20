@@ -109,38 +109,49 @@ sqlite3 mobile_money.db
 --Données
 
     --users
-    INSERT INTO users(username, password, role)
+    INSERT OR IGNORE INTO users(username, password, role)
     VALUES ('admin', 'admin123', 'OPERATEUR');
+
     --operateurs
-    INSERT INTO operateurs(nom)
+    INSERT OR IGNORE INTO operateurs(nom)
     VALUES ('Mobile Money');
+
     --prefixes
-    INSERT INTO prefixes(prefixe, operateur_id)
+    INSERT OR IGNORE INTO prefixes(prefixe, operateur_id)
     VALUES
     ('033',1),
     ('037',1);
+
     --types_operations
-    INSERT INTO types_operations(nom)
+    INSERT OR IGNORE INTO types_operations(nom)
     VALUES
     ('Depot'),
     ('Retrait'),
     ('Transfert');
 
+    --clients
+    INSERT OR IGNORE INTO clients(nom, telephone, solde)
+    VALUES ('Client Démo', '0331234567', 50000);
+
+    --transactions
+    INSERT OR IGNORE INTO transactions(type_operation_id, expediteur_id, destinataire_id, montant, frais)
+    VALUES (1, NULL, 1, 50000, 0);
+
 --Exemples de Barèmes Frais
     --Dépot
-       INSERT INTO baremes_frais(type_operation_id,montant_min,montant_max,frais)
+       INSERT OR IGNORE INTO baremes_frais(type_operation_id,montant_min,montant_max,frais)
         VALUES
         (1,0,999999999,0);
 
     --Retrait
-        INSERT INTO baremes_frais(type_operation_id,montant_min,montant_max,frais)
+        INSERT OR IGNORE INTO baremes_frais(type_operation_id,montant_min,montant_max,frais)
         VALUES
         (2,0,50000,500),
         (2,50001,100000,1000),
         (2,100001,500000,2000);
 
     --Transfert
-       INSERT INTO baremes_frais(type_operation_id,montant_min,montant_max,frais)
+       INSERT OR IGNORE INTO baremes_frais(type_operation_id,montant_min,montant_max,frais)
         VALUES
         (3,0,50000,300),
         (3,50001,100000,700),

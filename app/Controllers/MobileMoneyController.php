@@ -67,6 +67,8 @@ class MobileMoneyController extends BaseController
             return redirect()->to(base_url('mobile-money/login'));
         }
 
+        $this->initializeDatabaseFromSql();
+
         $clientModel = new ClientModel();
         $transactionModel = new TransactionModel();
         $typeOperationModel = new TypeOperationModel();
@@ -95,6 +97,8 @@ class MobileMoneyController extends BaseController
         if ($redirect !== null) {
             return $redirect;
         }
+
+        $this->initializeDatabaseFromSql();
 
         $clientModel = new ClientModel();
         $transactionModel = new TransactionModel();
@@ -321,6 +325,45 @@ class MobileMoneyController extends BaseController
         }
 
         return null;
+    }
+
+    private function initializeDatabaseFromSql(): void
+    {
+        $sqlFile = ROOTPATH . 'base.sql';
+        if (!is_file($sqlFile)) {
+            return;
+        }
+
+        $db = db_connect();
+        $tableCheck = $db->query("SELECT name FROM sqlite_master WHERE type='table' AND name='users'")->getResultArray();
+        if (!empty($tableCheck)) {
+            return;
+        }
+
+        $sql = file_get_contents($sqlFile);
+        if ($sql === false || trim($sql) === '') {
+            return;
+        }
+
+        $sql = preg_replace('/^sqlite3\s+.+$/m', '', $sql);
+        $sql = preg_replace('/^\s*--.*$/m', '', $sql);
+        $sql = preg_replace('/\r\n/', "\n", $sql);
+        $sql = trim($sql);
+
+        if ($sql === '') {
+            return;
+        }
+
+        $statements = preg_split('/;\s*\n/', $sql);
+
+        foreach ($statements as $statement) {
+            $statement = trim($statement);
+            if ($statement === '') {
+                continue;
+            }
+
+            $db->query($statement);
+        }
     }
 
     private function storeSession(array $user): void

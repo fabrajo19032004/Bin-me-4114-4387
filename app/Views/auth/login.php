@@ -95,7 +95,22 @@
         .form-panel p.subtitle {
             color: rgba(255,255,255,0.5);
             font-size: 0.9rem;
-            margin-bottom: 36px;
+            margin-bottom: 18px;
+        }
+
+        .help-box {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 12px;
+            padding: 12px 14px;
+            margin-bottom: 24px;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.5;
+        }
+
+        .help-box strong {
+            color: #fff;
         }
 
         .alert {
@@ -215,6 +230,12 @@
     <div class="form-panel">
         <h2>Bon retour</h2>
         <p class="subtitle">Connectez-vous avec votre adresse e-mail professionnelle</p>
+
+        <div class="help-box">
+            <strong>Test rapide :</strong><br>
+            Opérateur : <strong>admin</strong> / <strong>admin123</strong><br>
+            Client : utilisez un numéro de téléphone autorisé comme <strong>0331234567</strong>
+        </div>
 
         <?php if (session()->getFlashdata('error')): ?>
         <div class="alert alert-error">
