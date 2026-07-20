@@ -1,0 +1,325 @@
+/* ============================================
+   PAGE : HISTORIQUE DEPENSES
+   ============================================ */
+@import url('../shared/depense-fonts.css');
+@import url('../shared/depense-reset.css');
+@import url('../shared/depense-colors.css');
+@import url('../shared/depense-utilities.css');
+@import url('../shared/depense-nav.css');
+@import url('../shared/depense-components.css');
+@import url('../shared/depense-badge.css');
+@import url('../shared/depense-responsive.css');
+
+/* ============================================
+   SPÉCIFIQUE À L'HISTORIQUE
+   ============================================ */
+
+/* Conteneur principal */
+.ml-64 {
+    margin-left: 256px;
+}
+
+.min-h-screen {
+    min-height: 100vh;
+}
+
+.max-w-\[1600px\] {
+    max-width: 1600px;
+}
+
+/* Header sticky */
+header.sticky {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+}
+
+header .bg-white {
+    background-color: #ffffff;
+}
+
+header .border-b {
+    border-bottom: 1px solid #e8f0e8;
+}
+
+header .px-xl {
+    padding-left: 32px;
+    padding-right: 32px;
+}
+
+header .py-lg {
+    padding-top: 24px;
+    padding-bottom: 24px;
+}
+
+/* KPI Section */
+.custom-shadow {
+    box-shadow: 0px 1px 3px rgba(23, 43, 77, 0.1), 0px 1px 2px rgba(23, 43, 77, 0.06);
+}
+
+.bg-surface-container-lowest {
+    background-color: #ffffff;
+}
+
+.rounded-xl {
+    border-radius: 12px;
+}
+
+/* Filtres */
+.historique-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.historique-filters select,
+.historique-filters input {
+    padding: 8px 16px;
+    border: 1px solid #e8f0e8;
+    border-radius: 8px;
+    background: #ffffff;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    min-width: 150px;
+}
+
+.historique-filters select:focus,
+.historique-filters input:focus {
+    outline: none;
+    border-color: #2d7d2d;
+    box-shadow: 0 0 0 3px rgba(45, 125, 45, 0.1);
+}
+
+/* Statistiques */
+.historique-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.historique-stats .stat-item {
+    background: #ffffff;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.historique-stats .stat-item .stat-label {
+    font-size: 11px;
+    color: #7a8a7a;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+.historique-stats .stat-item .stat-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a2e1a;
+    margin-top: 4px;
+}
+
+.historique-stats .stat-item .stat-value.text-green {
+    color: #2d7d2d;
+}
+
+.historique-stats .stat-item .stat-value.text-blue {
+    color: #2980b9;
+}
+
+.historique-stats .stat-item .stat-value.text-error {
+    color: #c0392b;
+}
+
+/* Tableau */
+.border-collapse {
+    border-collapse: collapse;
+}
+
+.bg-surface-container-lowest {
+    background-color: #ffffff;
+}
+
+/* Sélecteurs */
+select {
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23434654%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C/polyline%3E%3C/svg%3E');
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    padding-right: 32px;
+    cursor: pointer;
+}
+
+/* Input Atlassian */
+.input-atlassian {
+    height: 40px;
+    border: 1px solid #DFE1E6;
+    border-radius: 3px;
+    transition: border-color 0.2s ease;
+    background-color: #ffffff;
+    padding: 0 12px;
+    width: 100%;
+}
+
+.input-atlassian:focus {
+    border-color: #0052CC;
+    border-width: 2px;
+    outline: none;
+}
+
+/* Min-width */
+.min-w-\[120px\] {
+    min-width: 120px;
+}
+
+.min-w-\[140px\] {
+    min-width: 140px;
+}
+
+/* Gap */
+.gap-lg {
+    gap: 24px;
+}
+
+.gap-md {
+    gap: 16px;
+}
+
+/* Couleurs spécifiques */
+.bg-atlassian-blue {
+    background-color: #2980b9;
+}
+
+.bg-atlassian-yellow {
+    background-color: #e67e22;
+}
+
+.bg-error {
+    background-color: #c0392b;
+}
+
+.bg-\[\#0052CC\] {
+    background-color: #0052cc;
+}
+
+.hover\:bg-\[\#0747A6\]:hover {
+    background-color: #0747A6;
+}
+
+.text-\[\#0052CC\] {
+    color: #0052cc;
+}
+
+.border-\[\#DFE1E6\] {
+    border-color: #DFE1E6;
+}
+
+/* Badge dans le header */
+.bg-primary.text-white {
+    background-color: #1a2e1a;
+    color: #ffffff;
+}
+
+/* Pagination */
+.page-btn.active {
+    background-color: #2980b9;
+    color: #ffffff;
+}
+
+/* Modal */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal {
+    background: white;
+    padding: 32px;
+    border-radius: 12px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #7a8a7a;
+}
+
+.modal-close:hover {
+    color: #1a2e1a;
+}
+
+/* ============================================
+   POUR ENLEVER L'ESPACE VIDE À DROITE
+   ============================================ */
+main .mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+main .px-xl {
+    padding-left: 32px;
+    padding-right: 32px;
+}
+
+/* Pour que le contenu occupe toute la largeur */
+main .w-full {
+    width: 100%;
+}
+
+/* Empêcher le débordement */
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.overflow-x-auto {
+    overflow-x: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .ml-64 {
+        margin-left: 0;
+    }
+    
+    .md\:hidden {
+        display: none;
+    }
+    
+    .grid-cols-2 {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+    
+    header .px-xl {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    
+    main .px-xl {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}

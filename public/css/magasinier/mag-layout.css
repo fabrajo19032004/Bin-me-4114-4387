@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    position: relative;
+    /* REMPLACEMENT DE L'IMAGE PAR LE LINEAR-GRADIENT SOUHAITÉ : */
+    background-image: linear-gradient(
+        135deg, 
+        #0a781e 0%, 
+        #020703 40%, 
+        #0a781e 70%, 
+        #0a781e 100%
+    );
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: -1;
+}
+
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.content {
+    padding: 28px 32px;
+    flex: 1;
+    overflow-y: auto;
+}

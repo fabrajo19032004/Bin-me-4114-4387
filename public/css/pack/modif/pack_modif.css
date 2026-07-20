@@ -1,0 +1,52 @@
+.form-card {
+    background: var(--cream);
+    border-radius: 16px;
+    padding: 28px;
+    margin-top: 24px;
+    border: 1px solid var(--charcoal);
+}
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    color: var(--charcoal);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.form-control {
+    background: #fff;
+    border: 1px solid var(--charcoal);
+    border-radius: 8px;
+    padding: 12px;
+    color: var(--charcoal);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    transition: border 0.2s;
+}
+
+.form-control:focus {
+    border-color: var(--charcoal);
+    outline: 2px solid var(--charcoal);
+    outline-offset: 2px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 28px;
+    border-top: 1px solid var(--border-light);
+    padding-top: 20px;
+}

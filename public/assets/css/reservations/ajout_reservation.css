@@ -1,0 +1,330 @@
+/* =========================
+   RESET GLOBAL
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f0f4f0;
+    min-height: 100vh;
+    display: flex;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+.sidebar {
+    width: 260px;
+    background: #1a2e1a;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 28px 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.sidebar-logo svg { width: 34px; height: 34px; }
+.sidebar-logo span {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.dot-red {
+    width: 7px;
+    height: 7px;
+    background: #e74c3c;
+    border-radius: 50%;
+    margin-left: 2px;
+    margin-top: -12px;
+}
+
+/* NAV */
+nav {
+    flex: 1;
+    padding: 16px 0;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 13px 24px;
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background 0.15s, color 0.15s;
+}
+
+.nav-item:hover {
+    background: rgba(255,255,255,0.06);
+    color: #fff;
+}
+
+.nav-item.active {
+    background: rgba(109,191,103,0.18);
+    color: #6dbf67;
+    border-right: 3px solid #6dbf67;
+}
+
+.nav-item svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+/* USER */
+.sidebar-user {
+    padding: 20px 24px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar {
+    width: 38px;
+    height: 38px;
+    background: #4a8a4a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.user-info .name {
+    font-size: 0.86rem;
+    color: #fff;
+    font-weight: 600;
+}
+
+.user-info .role {
+    font-size: 0.73rem;
+    color: rgba(255,255,255,0.45);
+}
+
+.btn-logout {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: rgba(255,255,255,0.4);
+    transition: color 0.15s;
+    padding: 4px;
+    margin-left: auto;
+}
+
+.btn-logout:hover {
+    color: #e74c3c;
+}
+
+.btn-logout svg {
+    width: 17px;
+    height: 17px;
+}
+
+/* =========================
+   MAIN
+========================= */
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+/* TOPBAR */
+.topbar {
+    background: #fff;
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #e8f0e8;
+}
+
+.topbar h1 {
+    font-size: 1.1rem;
+    color: #1a2e1a;
+    font-weight: 700;
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.topbar-date {
+    font-size: 0.8rem;
+    color: #7a8a7a;
+    background: #f5f9f5;
+    padding: 6px 12px;
+    border-radius: 8px;
+}
+
+.notif-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #7a8a7a;
+    position: relative;
+}
+
+.notif-btn svg { width: 22px; height: 22px; }
+
+.notif-btn .dot {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 8px;
+    height: 8px;
+    background: #e74c3c;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+
+/* =========================
+   CONTENT
+========================= */
+.content {
+    padding: 28px 32px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* PAGE HEADER */
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.page-header h2 {
+    font-size: 1.2rem;
+    color: #1a2e1a;
+    font-weight: 700;
+    position: relative;
+    padding-left: 18px;
+}
+
+.page-header h2::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 6px;
+    height: 22px;
+    background: #6dbf67;
+    border-radius: 4px;
+}
+
+/* =========================
+   FORMULAIRE (AMÉLIORÉ)
+========================= */
+.content form {
+    background: #ffffff;
+    padding: 28px;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    max-width: 720px;
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* déco SVG subtile */
+.content form::before {
+    content: "";
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 180px;
+    height: 180px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 24 24' fill='none' stroke='%236dbf67' stroke-width='1'%3E%3Cpath d='M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6l7-4z'/%3E%3C/svg%3E") no-repeat;
+    opacity: 0.08;
+}
+
+/* labels */
+.content form p {
+    margin-bottom: 16px;
+    font-size: 0.9rem;
+    color: #1a2e1a;
+    font-weight: 600;
+}
+
+/* inputs */
+.content form input[type="text"],
+.content form input[type="datetime-local"],
+.content form select {
+    width: 100%;
+    padding: 10px 12px;
+    margin-top: 6px;
+    border-radius: 10px;
+    border: 1px solid #dfe8df;
+    outline: none;
+    font-size: 0.9rem;
+    transition: 0.2s;
+    background: #f9fbf9;
+}
+
+.content form input:focus,
+.content form select:focus {
+    border-color: #6dbf67;
+    box-shadow: 0 0 0 3px rgba(109,191,103,0.15);
+    background: #fff;
+}
+
+/* bouton submit */
+.content form input[type="submit"] {
+    margin-top: 10px;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #1a2e1a, #2d4d2d);
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.15s, background 0.2s;
+}
+
+.content form input[type="submit"]:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #2d4d2d, #3b6a3b);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+    .content form {
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    .kpi-row {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        width: 220px;
+    }
+}

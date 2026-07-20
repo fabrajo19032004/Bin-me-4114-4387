@@ -1,0 +1,221 @@
+/* ============================================
+   1. IMPORTS DES FICHIERS EXISTANTS DU CRM
+   ============================================ */
+@import url('client-list.css');
+@import url('client-profile.css');
+@import url('client-form.css');
+
+/* Layout du profil en deux colonnes */
+.crm-profile-layout {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 24px;
+    align-items: start;
+}
+
+@media (max-width: 768px) {
+    .crm-profile-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.crm-left-col,
+.crm-right-col {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Cartes */
+.crm-card {
+    background: var(--crm-card-bg, #fff);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--crm-border, #dde8dd);
+}
+
+/* En-tête du profil */
+.crm-profile-header {
+    text-align: center;
+    border-bottom: 1px solid var(--crm-border, #dde8dd);
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.crm-profile-avatar {
+    width: 70px;
+    height: 70px;
+    background: #4a8a4a;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+}
+
+.crm-profile-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--crm-primary, #1a2e1a);
+}
+
+/* Badges */
+.crm-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.crm-badge-nouveau {
+    background: #e3f2fd;
+    color: #2980b9;
+}
+
+.crm-badge-actif {
+    background: #e8f5e8;
+    color: #2d7d2d;
+}
+
+.crm-badge-inactif {
+    background: #ffeaea;
+    color: #c0392b;
+}
+
+.crm-badge-fidele {
+    background: #fff3e0;
+    color: #e67e22;
+}
+
+/* Détails */
+.crm-details-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.crm-details-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding-bottom: 6px;
+}
+
+.crm-details-item:last-child {
+    border-bottom: none;
+}
+
+.crm-details-label {
+    font-size: 0.75rem;
+    color: #7a8a7a;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.crm-details-value {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #1a2e1a;
+}
+
+/* Carte Fidélité */
+.crm-loyalty-card {
+    background: linear-gradient(135deg, #1a2e1a 0%, #2e542e 100%);
+    color: #fff;
+    border: none;
+}
+
+.crm-loyalty-card .crm-details-label {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.crm-loyalty-card .crm-details-value {
+    color: #fff;
+}
+
+.crm-loyalty-status {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #6dbf67;
+    margin-bottom: 12px;
+}
+
+.crm-loyalty-metric {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+/* Tableaux */
+.crm-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.crm-table th {
+    background: #f5f9f5;
+    color: #7a8a7a;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    padding: 8px 12px;
+    border-bottom: 1.5px solid #dde8dd;
+    text-align: left;
+}
+
+.crm-table td {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+    border-bottom: 1px solid #dde8dd;
+    color: #1a2e1a;
+}
+
+/* Boutons */
+.btn-new-res {
+    background: #2d7d2d;
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-new-res:hover {
+    background: #236123;
+}
+
+.crm-btn-success {
+    background: #2d7d2d;
+    color: #fff;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.crm-btn-success:hover {
+    background: #236123;
+}
+
+/* Champs de formulaire */
+.crm-form-control {
+    background: #f5f9f5;
+    border: 1px solid #dde8dd;
+    border-radius: 6px;
+    padding: 8px 12px;
+    width: 100%;
+    font-size: 0.85rem;
+    color: #1a2e1a;
+}
+
+.crm-form-control:focus {
+    border-color: #4a8a4a;
+    outline: none;
+}

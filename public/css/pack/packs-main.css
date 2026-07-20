@@ -1,0 +1,142 @@
+/* ============================================================
+   PACKS-MAIN.CSS — point d'entrée unique
+   Importe le bottom-nav + les 3 css de page (liste / creer / detail)
+   ============================================================ */
+@import url('bottom-nav.css');
+@import url('packs-liste.css');
+@import url('packs-creer.css');
+@import url('packs-detail.css');
+@import url('packs-archive.css');
+@import url('packs-modifier.css');
+
+/* ============================================================
+   VARIABLES DE THEME — coherentes avec le dashboard Ecopanier
+   (fond vert tres sombre + accents mint/green + cartes glass)
+   ============================================================ */
+:root {
+    --eco-bg: #060b09;
+    --eco-bg-gradient:
+        radial-gradient(ellipse 900px 500px at 8% -5%, rgba(46, 204, 113, 0.16), transparent 60%),
+        radial-gradient(ellipse 700px 500px at 100% 10%, rgba(46, 204, 113, 0.08), transparent 55%),
+        radial-gradient(ellipse 900px 600px at 50% 120%, rgba(46, 204, 113, 0.10), transparent 60%),
+        #060b09;
+
+    --eco-accent: #34d399;
+    --eco-accent-dark: #10b981;
+    --eco-accent-rgb: 52, 211, 153;
+    --eco-accent-soft: rgba(52, 211, 153, 0.15);
+    --eco-accent-soft-hover: rgba(52, 211, 153, 0.25);
+
+    --eco-card-bg: rgba(12, 18, 15, 0.78);
+    --eco-card-border: rgba(255, 255, 255, 0.08);
+    --eco-card-border-hover: rgba(255, 255, 255, 0.14);
+    --eco-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
+    --eco-shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.6);
+
+    --eco-text: #ffffff;
+    --eco-text-secondary: rgba(255, 255, 255, 0.55);
+    --eco-text-muted: rgba(255, 255, 255, 0.35);
+
+    --eco-success: #2ecc71;
+    --eco-danger: #e74c3c;
+    --eco-warning: #f39c12;
+    --eco-purple: #9b59b6;
+    --eco-grey: #95a5a6;
+
+    --eco-radius-lg: 20px;
+    --eco-radius-md: 16px;
+    --eco-radius-sm: 10px;
+
+    --eco-bottomnav-h: 88px;
+}
+
+/* ============================================================
+   RESET GLOBAL & FOND DE PAGE
+   ============================================================ */
+* {
+    box-sizing: border-box;
+}
+/* 
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+}
+
+body {
+    background: var(--eco-bg-gradient);
+    background-attachment: fixed;
+    font-family: 'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--eco-text);
+} */
+
+/* ============================================================
+   OVERRIDE DU LAYOUT DE L'AMI (mag-layout.css / mag-sidebar.css)
+   -> on neutralise tout ce qui reservait de la place a la sidebar
+      pour que .main / .content prennent toute la largeur et se
+      centrent, puisqu'on utilise uniquement le bottom-nav ici.
+   ============================================================ */
+.sidebar {
+    display: none !important;
+}
+
+.main {
+    margin: 0 !important;
+    margin-left: 260px !important;
+    width: auto !important;
+    max-width: 100% !important;
+    min-height: 100vh;
+}
+
+@media (max-width: 900px) {
+    .main {
+        margin-left: 220px !important;
+    }
+}
+
+@media (max-width: 640px) {
+    .main {
+        margin-left: 0 !important;
+        padding-bottom: var(--eco-bottomnav-h);
+    }
+}
+
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 18px 24px;
+    background: rgba(6, 11, 9, 0.75);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--eco-card-border);
+}
+
+.topbar h1 {
+    margin: 0;
+    font-size: 1.15rem;
+    color: var(--eco-text);
+    font-weight: 700;
+}
+
+.topbar span {
+    font-size: 0.85rem;
+    color: var(--eco-text-secondary);
+}
+
+@media (max-width: 480px) {
+    .topbar {
+        padding: 14px 16px;
+    }
+    .topbar h1 {
+        font-size: 1rem;
+    }
+    .topbar span {
+        display: none;
+    }
+}

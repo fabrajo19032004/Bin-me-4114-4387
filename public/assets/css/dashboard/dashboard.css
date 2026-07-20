@@ -1,0 +1,82 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f4f0; min-height: 100vh; display: flex; }
+
+        .sidebar {
+            width: 260px; background: #1a2e1a; min-height: 100vh;
+            display: flex; flex-direction: column; flex-shrink: 0;
+        }
+        .sidebar-logo {
+            display: flex; align-items: center; gap: 12px;
+            padding: 28px 24px; border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .sidebar-logo svg { width: 34px; height: 34px; }
+        .sidebar-logo span { font-size: 1.3rem; font-weight: 700; color: #fff; }
+        .dot-red { width: 7px; height: 7px; background: #e74c3c; border-radius: 50%; margin-left: 2px; margin-top: -12px; }
+
+        nav { flex: 1; padding: 16px 0; }
+        .nav-item {
+            display: flex; align-items: center; gap: 14px;
+            padding: 13px 24px; color: rgba(255,255,255,0.65);
+            text-decoration: none; font-size: 0.9rem; font-weight: 500;
+            transition: background 0.15s, color 0.15s;
+        }
+        .nav-item:hover { background: rgba(255,255,255,0.06); color: #fff; }
+        .nav-item.active { background: rgba(109,191,103,0.18); color: #6dbf67; border-right: 3px solid #6dbf67; }
+        .nav-item svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+        .sidebar-user {
+            padding: 20px 24px; border-top: 1px solid rgba(255,255,255,0.08);
+            display: flex; align-items: center; gap: 12px;
+        }
+        .avatar {
+            width: 38px; height: 38px; background: #4a8a4a; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; font-weight: 700; font-size: 0.9rem; flex-shrink: 0;
+        }
+        .user-info .name { font-size: 0.86rem; color: #fff; font-weight: 600; }
+        .user-info .role { font-size: 0.73rem; color: rgba(255,255,255,0.45); }
+        .btn-logout {
+            background: none; border: none; cursor: pointer;
+            color: rgba(255,255,255,0.4); transition: color 0.15s; padding: 4px; margin-left: auto;
+        }
+        .btn-logout:hover { color: #e74c3c; }
+        .btn-logout svg { width: 17px; height: 17px; }
+
+        .main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+
+        .topbar {
+            background: #fff; padding: 18px 32px;
+            display: flex; align-items: center; justify-content: space-between;
+            border-bottom: 1px solid #e8f0e8;
+        }
+        .topbar h1 { font-size: 1.1rem; color: #1a2e1a; font-weight: 700; }
+        .topbar-right { display: flex; align-items: center; gap: 20px; }
+        .topbar-date { font-size: 0.8rem; color: #7a8a7a; background: #f5f9f5; padding: 6px 12px; border-radius: 8px; }
+        .notif-btn { background: none; border: none; cursor: pointer; color: #7a8a7a; position: relative; }
+        .notif-btn svg { width: 22px; height: 22px; }
+        .notif-btn .dot { position: absolute; top: -2px; right: -2px; width: 8px; height: 8px; background: #e74c3c; border-radius: 50%; border: 2px solid #fff; }
+
+        .content { padding: 28px 32px; flex: 1; overflow-y: auto; }
+
+        /* Page header */
+        .page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+        .page-header h2 { font-size: 1.2rem; color: #1a2e1a; font-weight: 700; }
+        .btn-new {
+            display: flex; align-items: center; gap: 8px;
+            background: #1a2e1a; color: #fff; border: none;
+            padding: 10px 20px; border-radius: 10px;
+            font-size: 0.88rem; font-weight: 600; cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-new:hover { background: #2d4d2d; }
+        .btn-new svg { width: 16px; height: 16px; }
+
+        /* KPI */
+        .kpi-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 28px; }
+        .kpi-card {
+            background: #fff; border-radius: 14px; padding: 22px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .kpi-label { font-size: 0.78rem; color: #7a8a7a; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 10px; }
+        .kpi-value { font-size: 1.8rem; font-weight: 700; color: #1a2e1a; }
+        .kpi-sub { font-size: 0.78rem; color: #9aab9a; margin-top: 4px; }
