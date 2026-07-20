@@ -54,3 +54,16 @@ TODO Liste - Version 1 (4114-4387)
         - Afficher les gains sur les retraits
         - Afficher les gains sur les transferts
         - Afficher la situation des comptes clients
+
+3. Base de données (En cours 4114)
+
+    - Créer la table clients
+    - Créer la table operateurs
+    - Créer la table prefixes
+    - Créer la table types_operations
+    - Créer la table baremes_frais
+    - Créer la table transactions
+
+    - Définir les clés primaires
+    - Définir les clés étrangères
+    - Vérifier les relations entre les tables
