@@ -10,9 +10,9 @@ class TransactionModel extends Model
     protected $primaryKey = 'id';
     protected $useAutoIncrement = true;
     protected $returnType = 'array';
-    protected $allowedFields = ['type_operation_id', 'expediteur_id', 'destinataire_id', 'montant', 'frais', 'date_transaction'];
-
-    public function record(int $typeOperationId, ?int $expediteurId, ?int $destinataireId, float $montant, float $frais): bool
+    protected $allowedFields = ['type_operation_id', 'expediteur_id', 'destinataire_id', 'montant', 'frais', 'est_vers_autre_operateur'];
+    
+    public function record(int $typeOperationId, ?int $expediteurId, ?int $destinataireId, float $montant, float $frais, int $estAutreOperateur = 0): bool
     {
         return (bool) $this->insert([
             'type_operation_id' => $typeOperationId,
@@ -20,6 +20,7 @@ class TransactionModel extends Model
             'destinataire_id' => $destinataireId,
             'montant' => $montant,
             'frais' => $frais,
+            'est_vers_autre_operateur' => $estAutreOperateur, // ← cette ligne doit exister
         ]);
     }
 

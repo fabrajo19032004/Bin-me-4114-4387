@@ -35,3 +35,7 @@ $routes->post('mobile-money/operator/operations', 'MobileMoneyController::saveOp
 $routes->get('mobile-money/operator/operations/delete/(:num)', 'MobileMoneyController::deleteOperation/$1');
 $routes->post('mobile-money/operator/fees', 'MobileMoneyController::saveFee');
 $routes->get('mobile-money/operator/fees/delete/(:num)', 'MobileMoneyController::deleteFee/$1');
+
+$routes->post('mobile-money/operator/prefixes', 'MobileMoneyController::savePrefix');
+$routes->post('mobile-money/operator/commissions', 'MobileMoneyController::saveCommission');
+$routes->post('mobile-money/transfer-multiple', 'MobileMoneyController::transferMultiple');
