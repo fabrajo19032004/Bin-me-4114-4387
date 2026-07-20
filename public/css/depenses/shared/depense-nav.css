@@ -1,0 +1,77 @@
+/* ============================================
+   SIDEBAR
+   ============================================ */
+.fixed.left-0.top-0.h-full {
+    background: #1a2e1a !important;
+    border-right: none !important;
+}
+
+.bg-surface-container-low {
+    background: #1a2e1a !important;
+}
+
+.border-r.border-outline-variant {
+    border-right: none !important;
+}
+
+/* Logo */
+.bg-primary-container.rounded {
+    background: #4a8a4a !important;
+}
+
+.text-primary {
+    color: #ffffff !important;
+}
+
+.text-outline {
+    color: rgba(255,255,255,0.45) !important;
+}
+
+/* Navigation items */
+.flex-grow.space-y-xs.px-sm .flex.items-center.px-md.py-sm {
+    color: rgba(255,255,255,0.65) !important;
+}
+
+.flex-grow.space-y-xs.px-sm .flex.items-center.px-md.py-sm:hover {
+    background: rgba(255,255,255,0.06) !important;
+    color: #ffffff !important;
+}
+
+.flex-grow.space-y-xs.px-sm .flex.items-center.px-md.py-sm.bg-primary-container\/10 {
+    background: rgba(109,191,103,0.18) !important;
+    color: #6dbf67 !important;
+}
+
+/* Dropdown items */
+#expenses-dropdown a {
+    color: rgba(255,255,255,0.65) !important;
+}
+
+#expenses-dropdown a:hover {
+    background: rgba(255,255,255,0.06) !important;
+    color: #ffffff !important;
+}
+
+/* Profile button */
+.border.border-outline-variant.hover\:ring-2 {
+    border-color: rgba(255,255,255,0.15) !important;
+}
+
+.text-outline.material-symbols-outlined {
+    color: rgba(255,255,255,0.65) !important;
+}
+
+/* Dropdown */
+.sidebar-dropdown-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.sidebar-dropdown-toggle[aria-expanded="true"] + .sidebar-dropdown-content {
+    max-height: 200px;
+}
+
+.sidebar-dropdown-toggle[aria-expanded="true"] .expand-icon {
+    transform: rotate(180deg);
+}

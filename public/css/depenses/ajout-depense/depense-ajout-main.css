@@ -1,0 +1,164 @@
+/* ============================================
+   PAGE : AJOUT DEPENSE
+   ============================================ */
+@import url('../shared/depense-fonts.css');
+@import url('../shared/depense-reset.css');
+@import url('../shared/depense-colors.css');
+@import url('../shared/depense-utilities.css');
+@import url('../shared/depense-nav.css');
+@import url('../shared/depense-components.css');
+@import url('../shared/depense-badge.css');
+@import url('../shared/depense-responsive.css');
+@import url('depense-form.css');
+
+/* ============================================
+   SPÉCIFIQUE À L'AJOUT DE DÉPENSE
+   ============================================ */
+
+/* Corps de la page */
+body {
+    background-color: #f9f9ff;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Largeur max du formulaire - IMPORTANT */
+.max-w-\[500px\] {
+    max-width: 500px;
+}
+
+/* Conteneur principal */
+.ajout-form-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Header */
+.ajout-form-container .form-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1a2e1a;
+    margin-bottom: 4px;
+}
+
+.ajout-form-container .form-subtitle {
+    color: #5a6a5a;
+    margin-bottom: 24px;
+}
+
+/* Alertes */
+.alert {
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    font-weight: 500;
+}
+
+.alert-success {
+    background: #e8f5e8;
+    color: #2d7d2d;
+    border: 1px solid #a8d5a8;
+}
+
+.alert-error {
+    background: #ffeaea;
+    color: #c0392b;
+    border: 1px solid #f5c6c6;
+}
+
+/* Type badge */
+.type-badge {
+    display: inline-block;
+    padding: 2px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.type-badge.fixe {
+    background: #e8f5e8;
+    color: #2d7d2d;
+}
+
+.type-badge.variable {
+    background: #fff3e0;
+    color: #e67e22;
+}
+
+.type-badge.note {
+    background: #e8f0ff;
+    color: #2980b9;
+}
+
+/* Couleurs spécifiques */
+.bg-\[\#0052CC\] {
+    background-color: #0052cc;
+}
+
+.bg-\[\#36B37E\] {
+    background-color: #36B37E;
+}
+
+.bg-\[\#DFE1E6\] {
+    background-color: #DFE1E6;
+}
+
+.text-\[\#36B37E\] {
+    color: #36B37E;
+}
+
+.text-\[\#006644\] {
+    color: #006644;
+}
+
+.border-\[\#DFE1E6\] {
+    border-color: #DFE1E6;
+}
+
+.hover\:bg-\[\#0747A6\]:hover {
+    background-color: #0747A6;
+}
+
+.hover\:bg-\[\#2d9d6a\]:hover {
+    background-color: #2d9d6a;
+}
+
+/* Toggle switch */
+.relative.inline-flex {
+    position: relative;
+    display: inline-flex !important;
+    align-items: center;
+}
+
+.translate-x-1 {
+    transform: translateX(4px);
+}
+
+.translate-x-6 {
+    transform: translateX(20px);
+}
+
+.active\:scale-\[0\.98\]:active {
+    transform: scale(0.98);
+}
+
+/* Upload justificatif */
+.border-2.border-dashed {
+    border: 2px dashed #DFE1E6;
+}
+
+.border-2.border-dashed:hover {
+    border-color: #0052CC;
+}
+
+/* Responsive - mobile */
+@media (max-width: 640px) {
+    .max-w-\[500px\] {
+        max-width: 100%;
+        padding: 16px;
+    }
+}

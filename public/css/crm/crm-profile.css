@@ -1,0 +1,345 @@
+/* =============================================
+   PROFIL CLIENT - VERSION OPTIMISÉE
+   ============================================= */
+
+/* --- Layout général --- */
+.crm-profile-layout {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+@media (max-width: 900px) {
+    .crm-profile-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.crm-left-col,
+.crm-right-col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* --- Cartes (AGRANDIES) --- */
+.crm-card {
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 16px;
+    padding: 20px 24px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #fff;
+    width: 100%;
+}
+
+/* --- En-tête --- */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.page-header h2 {
+    color: #fff;
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+/* --- Avatar & nom --- */
+.crm-profile-header {
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding-bottom: 14px;
+    margin-bottom: 14px;
+}
+
+.crm-profile-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4a8a4a, #6dbf67);
+    font-size: 2rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 8px;
+    color: #fff;
+}
+
+.crm-profile-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+/* --- Badges --- */
+.crm-badge {
+    display: inline-block;
+    padding: 2px 14px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.crm-badge-nouveau { background: #e3f2fd; color: #2980b9; }
+.crm-badge-actif { background: #e8f5e8; color: #2d7d2d; }
+.crm-badge-inactif { background: #ffeaea; color: #c0392b; }
+.crm-badge-fidele { background: #fff3e0; color: #e67e22; }
+
+/* --- Détails (alignés horizontalement) --- */
+.crm-details-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.crm-details-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.crm-details-item:last-child { border-bottom: none; }
+
+.crm-details-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.3px;
+}
+
+.crm-details-value {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #fff;
+    text-align: right;
+    max-width: 55%;
+}
+
+/* --- Carte Fidélité --- */
+.crm-loyalty-card {
+    background: linear-gradient(135deg, #1a2e1a, #2e542e);
+    border: none;
+    padding: 16px 24px;
+}
+
+.crm-loyalty-status {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #6dbf67;
+    margin-bottom: 6px;
+}
+
+.crm-loyalty-metric {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+/* --- Onglets --- */
+.crm-tab-header {
+    display: flex;
+    gap: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 16px;
+}
+
+.crm-tab-btn {
+    background: none;
+    border: none;
+    padding: 8px 2px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.5);
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.crm-tab-btn:hover { color: #fff; }
+.crm-tab-btn.active {
+    color: #fff;
+    border-bottom: 2px solid #6dbf67;
+}
+
+.crm-tab-content { display: none; }
+.crm-tab-content.active { display: block; }
+
+/* --- Tableaux --- */
+.crm-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+}
+
+.crm-table th {
+    text-align: left;
+    padding: 8px 10px;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.crm-table td {
+    padding: 8px 10px;
+    color: #fff;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+/* --- Boutons --- */
+.btn-new-res {
+    background: #2d7d2d;
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: background 0.2s;
+    border: none;
+    cursor: pointer;
+}
+.btn-new-res:hover { background: #236123; }
+
+.crm-btn-success {
+    background: #2d7d2d;
+    color: #fff;
+    border: none;
+    padding: 6px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background 0.2s;
+}
+.crm-btn-success:hover { background: #236123; }
+
+.crm-btn-secondary {
+    background: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.7);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+.crm-btn-secondary:hover {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+}
+
+.crm-btn-primary {
+    background: #00b53c;
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+.crm-btn-primary:hover {
+    background: #00cc11;
+    color: #fff;
+}
+
+/* --- Formulaire --- */
+.crm-form-control {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    color: #fff;
+    width: 100%;
+}
+.crm-form-control:focus {
+    outline: none;
+    border-color: #6dbf67;
+}
+
+/* --- Timeline --- */
+.crm-timeline {
+    padding-left: 20px;
+    border-left: 2px solid rgba(255,255,255,0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.crm-timeline-item { position: relative; }
+
+.crm-timeline-marker {
+    position: absolute;
+    left: -27px;
+    top: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #6dbf67;
+}
+
+.crm-timeline-date {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.4);
+}
+
+.crm-timeline-content {
+    background: rgba(255,255,255,0.03);
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+.crm-timeline-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.crm-timeline-body {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.7);
+}
+
+/* --- Alertes --- */
+.alert {
+    padding: 10px 14px;
+    border-radius: 10px;
+    margin-bottom: 16px;
+    font-size: 0.85rem;
+}
+.alert-success {
+    background: rgba(46,204,113,0.15);
+    border: 1px solid rgba(46,204,113,0.3);
+    color: #2ecc71;
+}
+.alert-error {
+    background: rgba(231,76,60,0.15);
+    border: 1px solid rgba(231,76,60,0.3);
+    color: #e74c3c;
+}
+
+/* --- Mise en page des en-têtes de cartes --- */
+.card-header-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+.card-header-actions h3 {
+    font-size: 0.95rem;
+    color: #fff;
+    margin: 0;
+}

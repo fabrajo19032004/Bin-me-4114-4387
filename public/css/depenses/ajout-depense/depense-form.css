@@ -1,0 +1,169 @@
+/* ============================================
+   FORMULAIRES SPÉCIFIQUES
+   ============================================ */
+
+/* Grilles */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.form-row.three-col {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+@media (max-width: 640px) {
+    .form-row,
+    .form-row.three-col {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Catégorie avec icône */
+.categorie-select-wrapper {
+    position: relative;
+}
+
+.categorie-select-wrapper .categorie-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #7a8a7a;
+}
+
+/* Montant avec devise */
+.montant-input-wrapper {
+    position: relative;
+}
+
+.montant-input-wrapper .devise {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: 600;
+    color: #7a8a7a;
+    font-size: 14px;
+}
+
+.montant-input-wrapper input {
+    padding-right: 40px !important;
+}
+
+/* Input Atlassian (compatible avec l'existant) */
+.input-atlassian {
+    height: 40px;
+    border: 1px solid #DFE1E6;
+    border-radius: 3px;
+    transition: border-color 0.2s ease;
+    background-color: #ffffff;
+    padding: 8px 12px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.input-atlassian:focus {
+    border-color: #0052CC;
+    border-width: 2px;
+    outline: none;
+}
+
+.input-atlassian::placeholder {
+    color: #737685;
+    opacity: 0.7;
+}
+
+textarea.input-atlassian {
+    height: auto;
+    min-height: 100px;
+    resize: none;
+    padding: 16px;
+}
+
+textarea.input-atlassian:focus {
+    border-width: 2px;
+}
+
+select.input-atlassian {
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23434654%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C/polyline%3E%3C/svg%3E');
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 40px;
+    cursor: pointer;
+}
+
+select.input-atlassian option {
+    padding: 8px;
+}
+
+/* Couleurs spécifiques au formulaire */
+.bg-\[\#0052CC\] {
+    background-color: #0052cc;
+}
+
+.bg-\[\#36B37E\] {
+    background-color: #36B37E;
+}
+
+.bg-\[\#DFE1E6\] {
+    background-color: #DFE1E6;
+}
+
+.hover\:bg-\[\#0747A6\]:hover {
+    background-color: #0747A6;
+}
+
+.hover\:bg-\[\#2d9d6a\]:hover {
+    background-color: #2d9d6a;
+}
+
+.hover\:bg-\[\#0052CC\]\/10:hover {
+    background-color: rgba(0, 82, 204, 0.1);
+}
+
+.text-\[\#36B37E\] {
+    color: #36B37E;
+}
+
+.text-\[\#006644\] {
+    color: #006644;
+}
+
+/* Toggle recurrence */
+.relative.inline-flex {
+    position: relative;
+    display: inline-flex !important;
+}
+
+.translate-x-1 {
+    transform: translateX(4px);
+}
+
+.translate-x-6 {
+    transform: translateX(20px);
+}
+
+/* Page header navigation */
+nav .material-symbols-outlined.text-\[14px\] {
+    font-size: 14px;
+}
+
+/* Espacement */
+.space-y-sm > * + * {
+    margin-top: 8px;
+}
+
+.space-y-md > * + * {
+    margin-top: 16px;
+}
+
+.space-y-lg > * + * {
+    margin-top: 24px;
+}
+
+.space-y-xs > * + * {
+    margin-top: 4px;
+}

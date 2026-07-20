@@ -1,0 +1,434 @@
+/* ============================================================
+   PACKS-ARCHIVE.CSS — Archives des Packs (archive_packs.php)
+   ============================================================ */
+.content {
+    padding: 24px 32px 48px 32px;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Page Header */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.page-header h2 {
+    color: var(--eco-text);
+    margin: 0;
+    font-size: 1.1rem;
+}
+.btn-retour {
+    padding: 8px 18px;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    height: 40px;
+    background: var(--eco-accent-soft);
+    color: var(--eco-accent);
+}
+.btn-retour:hover {
+    background: var(--eco-accent-soft-hover);
+    transform: translateY(-1px);
+}
+
+/* Subtitle */
+.page-sub {
+    color: var(--eco-text-secondary);
+    font-size: 0.85rem;
+    margin-bottom: 24px;
+    line-height: 1.6;
+}
+
+/* Alertes */
+.pay-alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+.pay-alert-success {
+    background: rgba(46, 204, 113, 0.15);
+    color: var(--eco-success);
+    border: 1px solid rgba(46, 204, 113, 0.2);
+}
+.pay-alert-danger {
+    background: rgba(231, 76, 60, 0.15);
+    color: var(--eco-danger);
+    border: 1px solid rgba(231, 76, 60, 0.2);
+}
+.pay-alert p {
+    margin: 0;
+}
+
+/* Filter Card */
+.filter-card {
+    background: var(--eco-card-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: var(--eco-radius-lg);
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    box-shadow: var(--eco-shadow);
+    border: 1px solid var(--eco-card-border);
+}
+.filter-card h3 {
+    font-size: 1rem;
+    color: var(--eco-text);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+}
+.filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: flex-end;
+}
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 0 1 auto;
+    min-width: 160px;
+}
+.filter-group label {
+    font-size: 0.7rem;
+    color: var(--eco-text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.filter-group input,
+.filter-group select {
+    padding: 8px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--eco-text);
+    min-width: 160px;
+    height: 40px;
+    transition: border-color 0.2s ease;
+}
+.filter-group input::placeholder {
+    color: var(--eco-text-muted);
+}
+.filter-group input:focus,
+.filter-group select:focus {
+    outline: none;
+    border-color: var(--eco-accent);
+    box-shadow: 0 0 0 2px var(--eco-accent-soft);
+}
+.filter-group select option {
+    background: #0b1210;
+    color: var(--eco-text);
+}
+
+/* Buttons */
+.btn-filtrer,
+.btn-reset {
+    padding: 8px 18px;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    height: 40px;
+}
+.btn-filtrer {
+    background: var(--eco-accent);
+    color: #062017;
+}
+.btn-filtrer:hover {
+    background: var(--eco-accent-dark);
+    transform: translateY(-1px);
+}
+.btn-reset {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--eco-text-secondary);
+}
+.btn-reset:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Table Card */
+.table-card {
+    background: var(--eco-card-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: var(--eco-radius-lg);
+    padding: 24px;
+    box-shadow: var(--eco-shadow);
+    overflow-x: auto;
+    border: 1px solid var(--eco-card-border);
+    color: var(--eco-text);
+}
+.table-card h3 {
+    font-size: 1rem;
+    color: var(--eco-text);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.table-card table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+.table-card th {
+    text-align: left;
+    padding: 12px 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    color: var(--eco-text-muted);
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+.table-card td {
+    padding: 12px 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    color: rgba(255, 255, 255, 0.8);
+    vertical-align: middle;
+}
+.table-card tr:hover td {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+/* Pack Thumb */
+.row-thumb {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--eco-text-muted);
+}
+.row-thumb svg {
+    width: 20px;
+    height: 20px;
+}
+
+.pack-name-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.pack-name-cell .name {
+    font-weight: 600;
+    color: var(--eco-text);
+    font-size: 0.9rem;
+}
+.pack-name-cell .cat {
+    font-size: 0.75rem;
+    color: var(--eco-text-muted);
+    margin-top: 2px;
+}
+
+/* Badges */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+}
+.badge-archived {
+    background: rgba(149, 165, 166, 0.15);
+    color: var(--eco-grey);
+}
+.badge-suppression {
+    background: rgba(231, 76, 60, 0.15);
+    color: var(--eco-danger);
+}
+.badge-modification {
+    background: rgba(241, 196, 15, 0.15);
+    color: #f1c40f;
+}
+
+/* Actions */
+.pay-actions {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+.pay-actions .btn-sm {
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.pay-actions .btn-sm-primary {
+    background: var(--eco-accent-soft);
+    color: var(--eco-accent);
+}
+.pay-actions .btn-sm-primary:hover {
+    background: var(--eco-accent-soft-hover);
+}
+.btn-restore {
+    background: rgba(46, 204, 113, 0.15);
+    color: var(--eco-success);
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.btn-restore:hover {
+    background: rgba(46, 204, 113, 0.25);
+    transform: translateY(-1px);
+}
+
+/* Onglets */
+.archive-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.tab-link {
+    padding: 12px 24px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--eco-text-muted);
+    transition: all 0.2s ease;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+}
+.tab-link:hover {
+    color: rgba(255, 255, 255, 0.7);
+}
+.tab-link.active {
+    color: var(--eco-accent);
+    border-bottom: 2px solid var(--eco-accent);
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--eco-text-muted);
+}
+.empty-state svg {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 15px;
+    opacity: 0.3;
+}
+.empty-state h3 {
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0 0 8px 0;
+    font-size: 18px;
+}
+.empty-state p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Pagination */
+.pagination-container {
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+.pagination-container a {
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--eco-text-secondary);
+    transition: all 0.2s ease;
+}
+.pagination-container a:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+.pagination-container a.active {
+    background: var(--eco-accent);
+    color: #062017;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+    .content {
+        padding: 16px;
+    }
+    .filter-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .filter-group {
+        min-width: 100%;
+    }
+    .table-card {
+        padding: 16px;
+    }
+    .table-card table {
+        font-size: 12px;
+    }
+    .table-card th,
+    .table-card td {
+        padding: 8px 6px;
+    }
+    .page-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .page-header h2 {
+        text-align: center;
+    }
+    .btn-retour {
+        justify-content: center;
+    }
+    .archive-tabs {
+        overflow-x: auto;
+    }
+    .tab-link {
+        padding: 10px 16px;
+        font-size: 0.8rem;
+        white-space: nowrap;
+    }
+}

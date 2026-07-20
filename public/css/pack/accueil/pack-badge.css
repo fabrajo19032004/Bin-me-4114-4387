@@ -1,0 +1,65 @@
+/* badges - style Neo-Brutalist */
+.badge {
+  font-size: 0.6rem;
+  font-weight: 600;
+  padding: 3px 12px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  flex-shrink: 0;
+  border: 1px solid var(--charcoal);
+  background: transparent;
+  color: var(--charcoal);
+}
+
+.badge-active {
+  background: var(--charcoal);
+  color: var(--cream);
+  border-color: var(--charcoal);
+}
+
+.badge-inactive {
+  border-color: var(--text-muted);
+  color: var(--text-muted);
+}
+
+.badge-custom {
+  background: var(--charcoal);
+  color: var(--cream);
+  border-color: var(--charcoal);
+}
+
+.badge-archived {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.badge-archived svg {
+  width: 11px;
+  height: 11px;
+}
+
+.badge-qty {
+  background: var(--charcoal);
+  color: var(--cream);
+  font-weight: 600;
+  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--charcoal);
+}
+
+.badge-suppression {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.badge-modification {
+  border-color: var(--charcoal);
+  color: var(--charcoal);
+}

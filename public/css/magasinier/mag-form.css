@@ -1,0 +1,49 @@
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.8rem;
+    color: #9aab9a;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #dde8dd;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    background: #fafcfa;
+    transition: border-color 0.2s;
+}
+
+.form-group textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #6dbf67;
+    box-shadow: 0 0 0 3px rgba(109, 191, 103, 0.1);
+}
+
+.form-group .required {
+    color: #e74c3c;
+}
+
+.form-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 32px;
+    max-width: 600px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}

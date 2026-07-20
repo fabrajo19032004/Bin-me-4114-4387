@@ -1,0 +1,145 @@
+.overview {
+    background: var(--cream);
+    border: 1px solid var(--charcoal);
+    border-radius: 16px;
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 0;
+    overflow: hidden;
+    margin-bottom: 36px;
+}
+
+.overview-img {
+    background: var(--cream-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 320px;
+}
+
+.overview-img svg {
+    width: 90px;
+    height: 90px;
+    color: var(--charcoal);
+    opacity: .35;
+    stroke: var(--charcoal);
+}
+
+.overview-info {
+    padding: 28px 32px;
+}
+
+.overview-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 8px;
+}
+
+.overview-top h2 {
+    font-family: var(--font-serif);
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--charcoal);
+    line-height: 1.2;
+}
+
+.overview-desc {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin: 14px 0 22px;
+    max-width: 560px;
+}
+
+.specs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px 28px;
+    margin-bottom: 22px;
+}
+
+.spec {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.spec .label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.spec .value {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--charcoal);
+}
+
+.price-box {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 2px;
+    background: var(--cream-dark);
+    border-radius: 12px;
+    padding: 14px 22px;
+    border: 1px solid var(--charcoal);
+}
+
+.price-box .label {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+}
+
+.price-box .value {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--charcoal);
+}
+
+.product-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.product-name {
+    font-weight: 700;
+    font-size: 13.5px;
+    color: var(--charcoal);
+}
+
+.product-ref {
+    font-size: 11.5px;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+.product-meta {
+    display: flex;
+    flex-direction: column;
+}
+
+.stock-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 6px;
+    border: 1px solid var(--charcoal);
+}
+
+.stock-ok {
+    background: var(--green);
+}
+
+.stock-low {
+    background: var(--charcoal);
+}

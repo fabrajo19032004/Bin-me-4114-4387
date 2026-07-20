@@ -1,0 +1,60 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    text-align: left;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    padding: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+td {
+    padding: 14px 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.actions a,
+.actions button {
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-right: 12px;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.btn-modifier { color: #f0a030; }
+.btn-modifier:hover { color: #d08a20; }
+
+.btn-supprimer { color: #e74c3c; }
+.btn-supprimer:hover { color: #c0392b; }
+
+.quantite-input {
+    width: 70px;
+    padding: 6px 8px;
+    border: 1px solid #dde8dd;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.btn-save {
+    background: #6dbf67;
+    color: #fff;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    margin-left: 4px;
+}
+
+.btn-save:hover { background: #5daa57; }
+.btn-modifier {
+    text-decoration: none;
+}
