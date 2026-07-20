@@ -24,13 +24,13 @@ TODO Liste - Version 1 (4114-4387)
         - Ajouter  les scripts de création des tables (ok)
         - Ajouter les données nécessaires (si besoin) (ok)
 
-    - Création de Taches.md (binôme)
+    - Création de Taches.md (4114-4387)
         - Lister les tâches du projet (ok)
         - Répartir les tâches entre les deux étudiants (ok)
         - Mettre à jour le fichier après chaque livraison (ok)
 
 
-2. Côté Opérateur (En cours) (4387)
+2. Côté Opérateur (4387)
 
     - Gestion des préfixes
         - Ajouter un préfixe (033, 037...)
@@ -121,4 +121,4 @@ TODO Liste - Version 1 (4114-4387)
     - Créer le Dashboard Client
     - Créer les pages CRUD
     - Adapter l'interface avec Bootstrap (non fini)
-    - Vérifier le responsive    
+    - Vérifier le responsive  
