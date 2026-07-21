@@ -204,6 +204,7 @@ class ClientMobileMoneyController extends MobileMoneyController
         $baremeModel = new BaremeFraisModel();
         $prefixModel = new PrefixModel();
         $operateurModel = new \App\Models\OperateurModel();
+         $reductionModel = new \App\Models\ReductionModel();
 
         $sender = $clientModel->firstOrCreate($senderTelephone);
         $recipient = $clientModel->firstOrCreate($recipientTelephone);
@@ -222,7 +223,16 @@ class ClientMobileMoneyController extends MobileMoneyController
             }
         }
 
-        $totalADebiter = $montant + $frais + $commission;
+        $reductions = 0;
+        if ($estExterne) {
+            $operateur = $reductionModel->find($prefixInfo['operateur_id']);
+            if ($operateur) {
+                $reductions = ($montant - $frais) * ($operateur['reductions_pourcentage'] / 100);
+            }
+        }
+
+
+        $totalADebiter = $montant + $frais + $commission +  $reductions;
 
         $senderBalance = $clientModel->getBalance($sender['id']);
         if ($senderBalance < $totalADebiter) {

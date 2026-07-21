@@ -8,6 +8,7 @@ use App\Models\PrefixModel;
 use App\Models\TransactionModel;
 use App\Models\TypeOperationModel;
 use App\Models\OperateurModel;
+use App\Models\ReductionModel;
 
 class OperatorMobileMoneyController extends MobileMoneyController
 {
@@ -26,6 +27,7 @@ class OperatorMobileMoneyController extends MobileMoneyController
         $typeOperationModel = new TypeOperationModel();
         $feeModel = new BaremeFraisModel();
         $operateurModel = new OperateurModel();
+        $reductionModel = new ReductionModel();
 
         $clients = $clientModel->findAll();
         $transactions = $transactionModel->findAll();
@@ -65,6 +67,7 @@ class OperatorMobileMoneyController extends MobileMoneyController
         $operateurModel = new OperateurModel();
         $prefixes = $prefixModel->orderBy('prefixe', 'ASC')->findAll();
         $operateurs = $operateurModel->findAll();
+       
 
         return view('mobile_money/operator/prefixes_page', [
             'prefixes' => $prefixes,
@@ -260,6 +263,23 @@ class OperatorMobileMoneyController extends MobileMoneyController
 
         return redirect()->back()->with('success', 'Commission mise à jour.');
     }
+
+     public function saveReductions()
+    {
+        $redirect = $this->ensureOperator();
+        if ($redirect !== null) {
+            return $redirect;
+        }
+
+        $id = (int) $this->request->getPost('id');
+        $reductions = (float) $this->request->getPost('reductions_pourcentage');
+
+        $reductionModel = new ReductionModel();
+        $operateurModel->update($id, ['reductions_pourcentage' => $reductions]);
+
+        return redirect()->back()->with('success', 'Reduction mise à jour.');
+    }
+
 
     public function savePrefix()
     {

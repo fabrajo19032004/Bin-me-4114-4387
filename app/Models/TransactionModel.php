@@ -19,7 +19,7 @@ class TransactionModel extends Model
             'expediteur_id' => $expediteurId,
             'destinataire_id' => $destinataireId,
             'montant' => $montant,
-            'frais' => $frais,
+            'frais' => $frais,        
             'est_vers_autre_operateur' => $estAutreOperateur, // ← cette ligne doit exister
         ]);
     }

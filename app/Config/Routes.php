@@ -46,4 +46,5 @@ $routes->get('mobile-money/operator/operations/delete/(:num)', 'OperatorMobileMo
 $routes->post('mobile-money/operator/fees', 'OperatorMobileMoneyController::saveFee');
 $routes->get('mobile-money/operator/fees/delete/(:num)', 'OperatorMobileMoneyController::deleteFee/$1');
 $routes->post('mobile-money/operator/commissions', 'OperatorMobileMoneyController::saveCommission');
+$routes->post('mobile-money/operator/reductions', 'OperatorMobileMoneyController::saveReductions');
 $routes->post('mobile-money/transfer-multiple', 'ClientMobileMoneyController::transferMultiple');
