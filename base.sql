@@ -1,4 +1,4 @@
-sqlite3 mobile_money_binome.db
+sqlite3 mobile_money.db
 
 --Utilisateurs 
     CREATE TABLE users (
