@@ -27,6 +27,8 @@
             <?= view('mobile_money/client/withdraw_form', ['client' => $client]) ?>
             <?= view('mobile_money/client/transfer_multiple_form', ['client' => $client]) ?>
             <?= view('mobile_money/client/transfer_simple_form', ['client' => $client]) ?>
+            <?= view('mobile_money/client/epargne', ['client' => $client]) ?>
+
         </section>
 
         <?= view('mobile_money/client/transactions_table', ['transactions' => $transactions]) ?>

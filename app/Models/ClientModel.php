@@ -40,4 +40,9 @@ class ClientModel extends Model
 
         return (float) ($client['solde'] ?? 0);
     }
+
+    public function updateEpargne(int $id, int $epargne): bool {
+
+        return (bool) $this->update($id, $epargne);
+    }
 }

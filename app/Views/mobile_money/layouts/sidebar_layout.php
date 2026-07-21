@@ -18,6 +18,8 @@
                     <a class="sidebar-link <?= ($page ?? '') === 'dashboard' ? 'active' : '' ?>" href="<?= base_url('mobile-money/client') ?>">Accueil</a>
                     <a class="sidebar-link <?= ($page ?? '') === 'history' ? 'active' : '' ?>" href="<?= base_url('mobile-money/client/history') ?>">Historique</a>
                     <a class="sidebar-link <?= ($page ?? '') === 'transfers' ? 'active' : '' ?>" href="<?= base_url('mobile-money/client/transfers') ?>">Transferts</a>
+                    <a class="sidebar-link <?= ($page ?? '') === 'transfers' ? 'active' : '' ?>" href="<?= base_url('mobile-money/client/epargne') ?>">Epargne</a>
+
                 <?php else: ?>
                     <a class="sidebar-link <?= ($page ?? '') === 'dashboard' ? 'active' : '' ?>" href="<?= base_url('mobile-money/operator') ?>">Vue d’ensemble</a>
                     <a class="sidebar-link <?= ($page ?? '') === 'history-internal' ? 'active' : '' ?>" href="<?= base_url('mobile-money/operator/history/interne') ?>">Historique interne</a>

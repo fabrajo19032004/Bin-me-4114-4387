@@ -48,3 +48,8 @@ $routes->get('mobile-money/operator/fees/delete/(:num)', 'OperatorMobileMoneyCon
 $routes->post('mobile-money/operator/commissions', 'OperatorMobileMoneyController::saveCommission');
 $routes->post('mobile-money/operator/reductions', 'OperatorMobileMoneyController::saveReductions');
 $routes->post('mobile-money/transfer-multiple', 'ClientMobileMoneyController::transferMultiple');
+
+// epargne
+$routes->get('mobile-money/client/epargne', 'ClientMobileMoneyController::epargne');
+$routes->post('mobile-money/epargne', 'ClientMobileMoneyController::storeEpargne');
+

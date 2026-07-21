@@ -59,6 +59,15 @@ CREATE TABLE types_operations (
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
+
+CREATE TABLE client_epargne (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_client INTEGER NOT NULL,
+    montant REAL NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_client) REFERENCES clients(id)
+);
+
 -- Barèmes de frais (avec montant_max NULL autorisé pour l'infini)
 CREATE TABLE baremes_frais (
     id INTEGER PRIMARY KEY AUTOINCREMENT,

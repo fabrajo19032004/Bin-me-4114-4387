@@ -204,7 +204,7 @@ class ClientMobileMoneyController extends MobileMoneyController
         $baremeModel = new BaremeFraisModel();
         $prefixModel = new PrefixModel();
         $operateurModel = new \App\Models\OperateurModel();
-         $reductionModel = new \App\Models\ReductionModel();
+        $reductionModel = new \App\Models\ReductionModel();
 
         $sender = $clientModel->firstOrCreate($senderTelephone);
         $recipient = $clientModel->firstOrCreate($recipientTelephone);
@@ -343,5 +343,40 @@ class ClientMobileMoneyController extends MobileMoneyController
         $db->transComplete();
 
         return redirect()->back()->with('success', count($destinataires) . ' transferts effectués avec succès.');
+    }
+
+    public function epargne()
+    {
+
+        if (!session()->get('connecte')) {
+            return redirect()->to(base_url('mobile-money/login'));
+        }
+        return view('mobile_money/client/epargne');
+    }
+
+    public function storeEpargne()
+    {
+
+        if (!session()->get('connecte')) {
+            return redirect()->to(base_url('mobile-money/login'));
+        }
+        $clientModel = new ClientModel();
+
+        $client =  $clientModel->find(session()->get('client_id'));
+        if (!$client) {
+            return redirect()->back()->with('error', 'Client introuvable.');
+        }
+
+        $epargne = $this->request->getPost('epargne');
+
+        if (empty($epargne)) {
+            return redirect()->back()->with('error', 'Tous les champs sont requis.');
+        }
+
+        if ($clientModel->update($client['id'], $epargne)) {
+            return redirect()->to('/mobile-money/client/epargne')->with("success", "Epargne ajouter avec success. Valeur: " . $epargne);
+        } else {
+            return redirect()->back()->with("error", "Epargne non ajouter");
+        }
     }
 }

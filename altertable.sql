@@ -5,6 +5,9 @@ ALTER TABLE transactions ADD COLUMN est_vers_autre_operateur INTEGER DEFAULT 0;
 ALTER TABLE transactions ADD COLUMN commission REAL DEFAULT 0;
 
 
+ALTER TABLE clients ADD COLUMN pourcentage_epargne REAL DEFAULT 0;
+
+
 
 -- Mettre à jour les préfixes existants
 UPDATE prefixes SET est_local = 1 WHERE operateur_id = 1;
