@@ -162,11 +162,11 @@ class ClientMobileMoneyController extends MobileMoneyController
         if ($inclureFrais) {
             $totalADebiter = $montant + $frais;
             $montantRecu = $montant;
-            $message = "Retrait effectué. Vous avez reçu " . number_format($montantRecu, 2) . " € (frais : " . number_format($frais, 2) . " €).";
+            $message = "Retrait effectué. Vous avez reçu " . number_format($montantRecu, 2) . " Ar (frais : " . number_format($frais, 2) . " Ar).";
         } else {
             $totalADebiter = $montant;
             $montantRecu = $montant - $frais;
-            $message = "Retrait effectué. Montant reçu : " . number_format($montantRecu, 2) . " €. Frais prélevés : " . number_format($frais, 2) . " €.";
+            $message = "Retrait effectué. Montant reçu : " . number_format($montantRecu, 2) . " Ar. Frais prélevés : " . number_format($frais, 2) . " Ar.";
         }
 
         if ($montantRecu < 0) {
@@ -248,11 +248,11 @@ class ClientMobileMoneyController extends MobileMoneyController
 
         $db->transComplete();
 
-        $message = "Transfert de " . number_format($montant, 2) . " € effectué. Le destinataire a reçu " . number_format($montant, 2) . " €.";
+        $message = "Transfert de " . number_format($montant, 2) . " Ar effectué. Le destinataire a reçu " . number_format($montant, 2) . " Ar.";
         if ($commission > 0) {
-            $message .= " Commission externe : " . number_format($commission, 2) . " €.";
+            $message .= " Commission externe : " . number_format($commission, 2) . " Ar.";
         }
-        $message .= " Frais de base : " . number_format($frais, 2) . " €.";
+        $message .= " Frais de base : " . number_format($frais, 2) . " Ar.";
 
         return redirect()->back()->with('success', $message);
     }

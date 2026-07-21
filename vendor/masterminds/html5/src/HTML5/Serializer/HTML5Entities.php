@@ -484,7 +484,7 @@ class HTML5Entities
         '⁡' => '&af;',
         '⁢' => '&InvisibleTimes;',
         '⁣' => '&ic;',
-        '€' => '&euro;',
+        'Ar' => '&euro;',
         '⃛' => '&TripleDot;',
         '⃜' => '&DotDot;',
         'ℂ' => '&complexes;',

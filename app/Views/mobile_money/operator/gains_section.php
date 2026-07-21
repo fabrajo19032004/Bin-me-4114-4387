@@ -26,11 +26,11 @@
             ?>
             <tr>
                 <td>Interne (frais de base)</td>
-                <td><?= number_format($gainsInterne, 2) ?> €</td>
+                <td><?= number_format($gainsInterne, 2) ?> Ar</td>
             </tr>
             <tr>
                 <td>Externe (frais de base + commissions)</td>
-                <td><?= number_format($gainsExterne, 2) ?> €</td>
+                <td><?= number_format($gainsExterne, 2) ?> Ar</td>
             </tr>
         </tbody>
     </table>

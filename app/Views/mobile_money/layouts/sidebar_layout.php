@@ -20,6 +20,9 @@
                     <a class="sidebar-link <?= ($page ?? '') === 'transfers' ? 'active' : '' ?>" href="<?= base_url('mobile-money/client/transfers') ?>">Transferts</a>
                 <?php else: ?>
                     <a class="sidebar-link <?= ($page ?? '') === 'dashboard' ? 'active' : '' ?>" href="<?= base_url('mobile-money/operator') ?>">Vue d’ensemble</a>
+                    <a class="sidebar-link <?= ($page ?? '') === 'history-internal' ? 'active' : '' ?>" href="<?= base_url('mobile-money/operator/history/interne') ?>">Historique interne</a>
+                    <a class="sidebar-link <?= ($page ?? '') === 'history-external' ? 'active' : '' ?>" href="<?= base_url('mobile-money/operator/history/externe') ?>">Historique externe</a>
+                    <a class="sidebar-link <?= ($page ?? '') === 'gains' ? 'active' : '' ?>" href="<?= base_url('mobile-money/operator/gains') ?>">Gains</a>
                     <a class="sidebar-link <?= ($page ?? '') === 'prefixes' ? 'active' : '' ?>" href="<?= base_url('mobile-money/operator/prefixes') ?>">Préfixes</a>
                     <a class="sidebar-link <?= ($page ?? '') === 'operations' ? 'active' : '' ?>" href="<?= base_url('mobile-money/operator/operations') ?>">Opérations</a>
                     <a class="sidebar-link <?= ($page ?? '') === 'fees' ? 'active' : '' ?>" href="<?= base_url('mobile-money/operator/fees') ?>">Frais</a>

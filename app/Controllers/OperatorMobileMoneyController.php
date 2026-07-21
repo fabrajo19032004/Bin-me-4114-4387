@@ -149,14 +149,99 @@ class OperatorMobileMoneyController extends MobileMoneyController
         $this->initializeDatabaseFromSql();
 
         $transactionModel = new TransactionModel();
+        $typeOperationModel = new TypeOperationModel();
         $transactions = $transactionModel->findAll();
+        $typeTransfertId = $this->optional($typeOperationModel->where('nom', 'Transfert')->first())['id'] ?? null;
 
         return view('mobile_money/operator/transactions_page', [
             'transactions' => $transactions,
+            'typeTransfertId' => $typeTransfertId,
             'title' => 'Transactions',
+            'sectionTitle' => 'Transactions',
+            'sectionSubtitle' => 'Historique global',
             'role' => 'operator',
             'roleLabel' => 'Opérateur',
             'page' => 'transactions',
+        ]);
+    }
+
+    public function operatorHistoryInternal()
+    {
+        $redirect = $this->ensureOperator();
+        if ($redirect !== null) {
+            return $redirect;
+        }
+
+        $this->initializeDatabaseFromSql();
+
+        $transactionModel = new TransactionModel();
+        $typeOperationModel = new TypeOperationModel();
+        $transactions = $transactionModel->where('est_vers_autre_operateur', 0)
+            ->orderBy('date_transaction', 'DESC')
+            ->findAll();
+        $typeTransfertId = $this->optional($typeOperationModel->where('nom', 'Transfert')->first())['id'] ?? null;
+
+        return view('mobile_money/operator/transactions_page', [
+            'transactions' => $transactions,
+            'typeTransfertId' => $typeTransfertId,
+            'title' => 'Historique interne',
+            'sectionTitle' => 'Historique interne',
+            'sectionSubtitle' => 'Transactions vers le même opérateur',
+            'role' => 'operator',
+            'roleLabel' => 'Opérateur',
+            'page' => 'history-internal',
+        ]);
+    }
+
+    public function operatorHistoryExternal()
+    {
+        $redirect = $this->ensureOperator();
+        if ($redirect !== null) {
+            return $redirect;
+        }
+
+        $this->initializeDatabaseFromSql();
+
+        $transactionModel = new TransactionModel();
+        $typeOperationModel = new TypeOperationModel();
+        $transactions = $transactionModel->where('est_vers_autre_operateur', 1)
+            ->orderBy('date_transaction', 'DESC')
+            ->findAll();
+        $typeTransfertId = $this->optional($typeOperationModel->where('nom', 'Transfert')->first())['id'] ?? null;
+
+        return view('mobile_money/operator/transactions_page', [
+            'transactions' => $transactions,
+            'typeTransfertId' => $typeTransfertId,
+            'title' => 'Historique externe',
+            'sectionTitle' => 'Historique externe',
+            'sectionSubtitle' => 'Transactions vers un autre opérateur',
+            'role' => 'operator',
+            'roleLabel' => 'Opérateur',
+            'page' => 'history-external',
+        ]);
+    }
+
+    public function operatorGains()
+    {
+        $redirect = $this->ensureOperator();
+        if ($redirect !== null) {
+            return $redirect;
+        }
+
+        $this->initializeDatabaseFromSql();
+
+        $transactionModel = new TransactionModel();
+        $typeOperationModel = new TypeOperationModel();
+        $transactions = $transactionModel->findAll();
+        $typeTransfertId = $this->optional($typeOperationModel->where('nom', 'Transfert')->first())['id'] ?? null;
+
+        return view('mobile_money/operator/gains_page', [
+            'transactions' => $transactions,
+            'typeTransfertId' => $typeTransfertId,
+            'title' => 'Gains',
+            'role' => 'operator',
+            'roleLabel' => 'Opérateur',
+            'page' => 'gains',
         ]);
     }
 

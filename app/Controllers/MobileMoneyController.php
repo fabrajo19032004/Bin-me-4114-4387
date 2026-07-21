@@ -118,4 +118,40 @@ class MobileMoneyController extends BaseController
             'client_id' => $user['client_id'],
         ]);
     }
+
+    protected function optional($value)
+    {
+        return new class($value) implements \ArrayAccess {
+            private $value;
+
+            public function __construct($value)
+            {
+                $this->value = $value;
+            }
+
+            public function offsetExists($offset): bool
+            {
+                return is_array($this->value) && array_key_exists($offset, $this->value);
+            }
+
+            public function offsetGet($offset)
+            {
+                if (is_array($this->value) && array_key_exists($offset, $this->value)) {
+                    return $this->value[$offset];
+                }
+
+                return null;
+            }
+
+            public function offsetSet($offset, $value): void
+            {
+                throw new \LogicException('Cannot set value on optional wrapper.');
+            }
+
+            public function offsetUnset($offset): void
+            {
+                throw new \LogicException('Cannot unset value on optional wrapper.');
+            }
+        };
+    }
 }

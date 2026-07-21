@@ -28,6 +28,9 @@ $routes->get('mobile-money/client', 'ClientMobileMoneyController::clientDashboar
 $routes->get('mobile-money/client/history', 'ClientMobileMoneyController::clientHistory');
 $routes->get('mobile-money/client/transfers', 'ClientMobileMoneyController::clientTransfers');
 $routes->get('mobile-money/operator', 'OperatorMobileMoneyController::operatorDashboard');
+$routes->get('mobile-money/operator/history/interne', 'OperatorMobileMoneyController::operatorHistoryInternal');
+$routes->get('mobile-money/operator/history/externe', 'OperatorMobileMoneyController::operatorHistoryExternal');
+$routes->get('mobile-money/operator/gains', 'OperatorMobileMoneyController::operatorGains');
 $routes->get('mobile-money/operator/prefixes', 'OperatorMobileMoneyController::operatorPrefixes');
 $routes->get('mobile-money/operator/operations', 'OperatorMobileMoneyController::operatorOperations');
 $routes->get('mobile-money/operator/fees', 'OperatorMobileMoneyController::operatorFees');

@@ -35,7 +35,7 @@
             <?php foreach ($commissionsParOperateur as $opId => $total): ?>
                 <tr>
                     <td><?= esc($operateurs[$opId]['nom'] ?? 'Inconnu') ?></td>
-                    <td><?= number_format($total, 2) ?> €</td>
+                    <td><?= number_format($total, 2) ?> Ar</td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

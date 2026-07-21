@@ -1,7 +1,7 @@
 <section class="card">
     <div class="section-title">
-        <h3>Transactions</h3>
-        <span>Historique global</span>
+        <h3><?= esc($sectionTitle ?? 'Transactions') ?></h3>
+        <span><?= esc($sectionSubtitle ?? 'Historique global') ?></span>
     </div>
     <table>
         <thead>
