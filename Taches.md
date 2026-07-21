@@ -11,7 +11,7 @@ TODO Liste - Version 1 (4114-4387)
     - Configuration SQLite (4114)
         - Installer/activer SQLite (Pour 4114-4387) (ok)
         - Intégrer SQLite dans le projet (4114) (ok)
-        - Configurer la connexion à la base de données (ok) 
+        - Configurer la connexion à la base de données (ok)
 
     - Initialisation Git (4387)
         - Créer un dépôt GitHub public (ok)
@@ -28,7 +28,6 @@ TODO Liste - Version 1 (4114-4387)
         - Lister les tâches du projet (ok)
         - Répartir les tâches entre les deux étudiants (ok)
         - Mettre à jour le fichier après chaque livraison (ok)
-
 
 2. Côté Opérateur (4387)
 
@@ -68,7 +67,6 @@ TODO Liste - Version 1 (4114-4387)
     - Définir les clés étrangères (ok)
     - Vérifier les relations entre les tables (ok)
 
-
 4. Côté Client (4114)
 
     - Connexion
@@ -101,8 +99,6 @@ TODO Liste - Version 1 (4114-4387)
     - Historique
         - Afficher toutes les transactions du client
 
-
-
 5. Développement (4387-4114)
 
     - Créer les Models
@@ -112,13 +108,11 @@ TODO Liste - Version 1 (4114-4387)
     - Ajouter les validations des formulaires
     - Gérer les messages de succès et d'erreur
 
-
-
-6. Interface 
+6. Interface
 
     - Créer la page de connexion
     - Créer le Dashboard Opérateur
     - Créer le Dashboard Client
     - Créer les pages CRUD
     - Adapter l'interface avec Bootstrap (non fini)
-    - Vérifier le responsive  
+    - Vérifier le responsive

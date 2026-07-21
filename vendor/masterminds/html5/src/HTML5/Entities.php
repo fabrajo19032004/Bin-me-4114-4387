@@ -577,7 +577,7 @@ class Entities
         'Eum' => 'Ë',
         'euml' => 'ë',
         'eum' => 'ë',
-        'euro' => '€',
+        'euro' => 'Ar',
         'excl' => '!',
         'exist' => '∃',
         'Exists' => '∃',
